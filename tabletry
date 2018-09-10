@@ -1,0 +1,39 @@
+<DOCTYPE html>
+
+<html>
+
+<head>
+
+
+<body>
+<table>
+    <tbody>
+        <tr>
+            <th></th>
+            <th>A</th>
+            <th>B</th>
+            <th>C</th>
+        </tr>
+        <tr>
+            <th>1</th>
+            <td><span id="A1" contenteditable>#####</span></td>
+            <td><span id="B1" contenteditable></span></td>
+            <td><span id="C1" contenteditable></span></td>
+        </tr>
+        <tr>
+            <th>2</th>
+            <td><span id="A2" contenteditable></span></td>
+            <td><span id="B2" contenteditable></span></td>
+            <td><span id="C2" contenteditable></span></td>
+        </tr>
+    </tbody>
+</table>
+
+span {
+    width: 100%;
+    display: block;
+}
+</body>
+</head>
+
+</html>
