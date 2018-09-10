@@ -14,7 +14,7 @@ $("#btn-search").click(function(){
 			//$("#debug").html(data);
 		}
 	});*/
-	window.location.replace("demodemodemo.php?search="+searchkey);
+	window.location.replace("admindashboard.php?search="+searchkey);
 
 })
 
