@@ -1,6 +1,9 @@
 <?php
-	session_start();
-	if(isset($_SESSION['uid'])){
+
+  session_start();
+
+
+  if(isset($_SESSION['uid'])){
     //print_r($_SESSION);
   }else{
     header("Location: index.php");
@@ -8,101 +11,175 @@
 
   $accname = $_SESSION['gname'];
   $acctype = $_SESSION['type'];
-  //echo $acctype;
-?>
+  if($acctype==="admin"){
+    //echo "Admin ANG NAKALOGIN";
+  }else if($acctype==="INSTRUCTOR"){
+    //echo "Instructor ang naka login";
 
+    header("Location: instructordashboard.php");
+  }else if($acctype==="student"){
+    header("Location: index.php");
+  }
+
+
+  ?>
 
 
 <!DOCTYPE html>
-<html ">
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> RESEARCH RECORD MANAGEMENT SYSTEM</title>
+    <title> Administrator </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--bootstrap-->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-min-4.1.0.css">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- scrollbar -->
+    <link rel="stylesheet" href="css/custom_scroll.css">
 
-    <!-- Custom Theme Style -->
-    <link rel="stylesheet" type="text/css" media="screen" href="css/custom.min.css">
-		<link rel="stylesheet" type="text/css" media="screen" href="css/button.css">
-		<link rel="stylesheet" href="css/temp.css">
-
+    <script defer src="js/solid.js"></script>
+    <script defer src="js/fontawesome.js"></script>
 
 </head>
-<body class="nav-md" style="background-color: gray">
-    <div class="container body">
-		<div class="main_container">
-			<div class="col-md-3 left_col">
-				<div class="left_col scroll-view">
-					<div class="navbar nav_title" style="border: 0;">
-						<a class="site_title"><span> Research Record Management System </span></a>
-					</div>
-					<div class="clearfix"></div>
-			<!-- menu profile quick info -->
-            <div class="profile clearfix">
-              <div class="profile_pic">
-                <img src="img/final.jpg" alt="..." class="img-circle profile_img">
-              </div>
-              <div class="profile_info">
-                <span> <?php echo strtoupper($accname) ?> </span>
-                <h2> <?php echo strtoupper($acctype) ?> </h2>
-              </div>
+<body>
+	<div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h4>Research Record Mangement System</h4>
             </div>
-            <!-- /menu profile quick info -->
+            <div class="sidebar-header">
+                <h5 style="color: #00004d;"><?php echo strtoupper($accname) ?></h5>
+                <h6><?php echo strtoupper($acctype) ?></h6>
+            </div>
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="admindashboard.php"class="dropdown-toggle">Research</a>
+                    <!--<ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="#">Home 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Home 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Home 3</a>
+                        </li>
+                    </ul>-->
+                </li>
+                <li>
+                    <a href="updateAcc.php">Update Account</a>
+                </li>
+                <li>
+                    <a href="accesscode.php" class="dropdown-toggle">Access Codes</a>
+                    <!--<ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="#">Page 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 3</a>
+                        </li>
+                    </ul>-->
+                </li>
+                <li>
+                    <a href="book_reports.php?title=&dept=&status=&author=&from=0&to=2018">Reports</a>
+                </li>
+                <li>
+                    <a href="dept.php">Department</a>
+                </li>
+            </ul>
 
-            <br />
+            <ul class="list-unstyled CTAs">
+                <li>
+                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
+                </li>
+                <li>
+                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
+                </li>
+            </ul>
+        </nav>
 
-            <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <div class="nav side-menu">
-					<ul><a href="admindashboard.php"> MY RESEARCH </span></a></ul>
-					<ul><a href="updateAcc.php"> UPDATE ACCOUNT </a></ul>
-					<ul><a class= "dashboard-active" href="#code"> ACCESS CODE </a> </ul>
-					<?php
-                            $d = Date('Y-m-d');
-                            $yr = explode("-", $d);
+        <!-- Page Content  -->
+        <div id="content">
 
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
 
-                            echo '<ul><a href="book_reports.php?title=&dept=&status=&author=&from=0&to=' . $yr[0] . '" target="_blank"> REPORTS </a> </ul>';
-                          ?>
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Toggle Menu</span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
 
-          <ul><a href="dept.php">DEPARTMENT </a> </ul> </br>
-					<ul><a href="index.php"> Back to Home </a> </ul>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="index.php">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="new-login.php">Logout</a>
+                            </li>
+                            <!--<li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>-->
+                        </ul>
+                    </div>
                 </div>
-              </div>
+            </nav>
+           
 
-            </div>
-          </div>
-        </div>
+           <!---- PLACE YOUR DIVS HERE --->
 
-        <!-- page content -->
-        <div class="right_col" role="main" style="min-height: 712px;">
-			<div id= "admin-frm-container" class="frm-container" style="margin: auto; width: 80%">
-				<center><h1> GENERATE ACCESS CODE </h1></center>
-			<hr></br>
-			<script>
+            <div class="container">
+                <div class="row">
+                   <center><h3> GENERATE ACCESS CODE </h3></center>
+                 </div>
+                <script>
 
-			
 				function numbersonly(input){
 					var numall= /[^0-9]/gi;
 					input.value= input.value.replace(numall, "");
 				}
-			</script>
-			<form id= "admin-frm-generatepass" class= "frm-generatepass" >
-				<table style="font-size: 15px">
-					<tr>
-						<td> <b> Number of Access Code: </b> </td>
-						<td> <input type="number" placeholder="0"  class="form-control" name="number" min="0" value="0" id="access-count" onkeyup="numbersonly(this)" style= "width: 50%" required> </td>
-						<td> <button type="button" id="admin-btn-generate" class="btn  btn-primary"> GENERATE </button> </td>
-					</tr>
-				</table>
-			</form></br></br>
-			<hr>
-			</br> <center><h2> Available Accesskey </h2></center>
-			<form id= "admin-frm-generatepass" class= "frm-generatepass" action="/action_page.php">
-				<div id="printtable">
-				<table style="width:100%"border="1" cellpadding="3" id="tbl-accescodes" style="font-size: 15px" >
+			     </script>
+                <div class="line"></div>
+                    
+                <div class="row">
+                  <div class="col-md-12">
+                      Number of Access Code:
+                    </div>
+                    <div class="col-md-6">
+                        <input type="number" placeholder="0"  class="form-control" name="number" min="0" value="0" id="access-count" onkeyup="numbersonly(this)" required>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="col-md-6">
+                        <button type="button" id="admin-btn-generate" class="btn  btn-primary" style="float:left"> GENERATE </button>
+                    </div>
+                </div>
+                
+                
+            </div>
+            <div class="line"></div>
+                
+            <div class="container">
+                <div class="row" style="text-align:center">
+                    
+                    <h5>Available Accesskey</h5>
+                </div>
+                <div class="row" id="printtable">
+                    
+                    <table style="width:100%"border="1" cellpadding="3" id="tbl-accescodes" style="font-size: 15px" >
 
 					<tr class="access-tr-head">
 						<th id="access-th">Count</th>
@@ -136,18 +213,17 @@
 
 					?>
 				</table>
-			</div>
-				<iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
-			</form></br>
-
-			<hr>
-			<span style="float: left;">
-
-  	<!--	<button onclick="printContent('tbl-accescodes')">Print</button> -->
-		<!--<button class="print-button" onclick="printDiv()"><span class="print-icon"></button>-->
-			<button onclick="printDiv()" style="width: 100px; font-size: 13pt">Print</button>
-
-		<script>
+                </div>
+           
+                <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
+                <div class="row">
+                    <button class="btn btn-primary"onclick="printDiv()" style="width: 100px; font-size: 13pt">Print</button>
+                </div>
+                
+                
+                
+            </div>
+            <script>
 		function printDiv() {
 			 window.frames["print_frame"].document.body.innerHTML = document.getElementById("printtable").innerHTML;
 			 window.frames["print_frame"].window.focus();
@@ -155,28 +231,41 @@
 		 }
 		</script>
 
-			</span>
-		</div>
-          <!-- top tiles -->
-          <div class="row tile_count"></div>
-          <!-- /top tiles -->
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- /page content -->
+            
 
-      </div>
+
+
+
+
+
+
+
+
+
+
+           <!---- AYAW NAG LAPAS DIRI --->
+        </div>
     </div>
 
-    <!-- jQuery -->
-    <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
-    <!-- Bootstrap -->
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="js/jquery-3.3.1.slim.min.js"></script>
+    <!-- Popper.JS -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap.min-4.1.0.js"></script>
 
-    <!-- Custom Theme Scripts -->
-    
-    <script src="js/accesscode.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
 
-  </body>
+    <script src="js/searchdoc.js"></script>
+       <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+      <script src="js/accesscode.js"></script>
+
+	  
+</body>
 </html>
