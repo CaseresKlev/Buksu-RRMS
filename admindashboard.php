@@ -146,7 +146,7 @@
                     while ($row = $result->fetch_assoc()) {
                       $str =  '
                       <tr>
-                <td scope="col" style="width: 50%; color: blue; "><a style="" href="view-stat.php?book_id='. $row['book_id'] .'">'. $row['book_title'] .'</a></td>';
+                <td scope="col" style="width: 50%"><a href="view-stat.php?book_id='. $row['book_id'] .'">'. $row['book_title'] .'</a></td>';
 
                   //for author
                   
@@ -175,7 +175,7 @@
                           </tr>';
                                   }else{
                                     $str .= '
-                                <td scope="col" style="width: 25%">Student Research</td>
+                                <td scope="col" style="width: 25%"Student Research</td>
                           </tr>';
                                   }
                                   
