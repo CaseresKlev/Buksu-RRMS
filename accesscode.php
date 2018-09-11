@@ -43,11 +43,12 @@
     <script defer src="js/solid.js"></script>
     <script defer src="js/fontawesome.js"></script>
 
+
 </head>
 <body>
 	<div class="wrapper">
         <!-- Sidebar  -->
-        <nav id="sidebar">
+        <nav id="sidebar" data-spy="affix" data-offset-top="197">
             <div class="sidebar-header">
                 <h4>Research Record Mangement System</h4>
             </div>
@@ -108,7 +109,7 @@
         <!-- Page Content  -->
         <div id="content">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" data-spy="affix" data-offset-top="197">
                 <div class="container-fluid">
 
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
