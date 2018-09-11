@@ -140,9 +140,19 @@
            
 
            <!---- PLACE YOUR DIVS HERE --->
+            
+            <div class="container">
+                <div class="row">
+                     <fieldset>
+      <legend>ADD DEPARTMENT</legend>
+      <input style="text-transform:capitalize"type="text"name="department" id="department"onkeyup="lettersonly(this)" placeholder="Department" required/>
+      <input style="text-transform:capitalize"type="text"name="college" id="college" onkeyup="lettersonly(this)" placeholder="College"/ required>
+            <button type="button" id="submit1" >ADD</button>
+    </fieldset>
+                </div>
+            </div>
 
-
-
+            
 
 
 

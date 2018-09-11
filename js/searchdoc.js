@@ -61,7 +61,9 @@ if ( $("#department").val()==""|| $("#college").val()=="") {
 			task:"add"
 		},
 		success:function(data){
+            
 			alert(data);
+            window.location.reload();
 		}
 
 	});

@@ -19,7 +19,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Untitled Document</title>
-<link rel="stylesheet" type="text/css" href="css/bookdet.css">
+    
+     <link rel="stylesheet" type="text/css" href="css/bootstrap-min-4.1.0.css">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- scrollbar -->
+    <link rel="stylesheet" href="css/custom_scroll.css">
+
+    <script defer src="js/solid.js"></script>
+    <script defer src="js/fontawesome.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bookdet.css">
+    
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
   <header>
@@ -251,7 +261,7 @@
         //echo $row['dowloadable'];
           if($row['dowloadable']==1){
             echo "<tr >
-                    <td><b><a href=" . $row['docloc'] . ">Download</a></b></td>
+                    <td><b><a href=" . $row['docloc'] . "><span class=\"fas fa-download\"></span> Download</a></b></td>
                   </tr>";
           }
         ?>

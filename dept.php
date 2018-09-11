@@ -1,4 +1,4 @@
- <?php
+<?php
 
   session_start();
 
@@ -13,19 +13,16 @@
   $acctype = $_SESSION['type'];
   if($acctype==="admin"){
     //echo "Admin ANG NAKALOGIN";
-  }else if($acctype==="instructor"){
+  }else if($acctype==="INSTRUCTOR"){
     //echo "Instructor ang naka login";
 
     header("Location: instructordashboard.php");
   }else if($acctype==="student"){
-    //echo "student ang naka login";
+    header("Location: index.php");
   }
 
 
   ?>
-
-
-
 
 
 <!DOCTYPE html>
@@ -35,106 +32,151 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title> Administrator </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--bootstrap-->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-min-4.1.0.css">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- scrollbar -->
+    <link rel="stylesheet" href="css/custom_scroll.css">
 
-    <!-- Custom Theme Style -->
-    <link rel="stylesheet" type="text/css" media="screen" href="css/custom.min.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="css/dept.css">
-
+    <script defer src="js/solid.js"></script>
+    <script defer src="js/fontawesome.js"></script>
 
 </head>
-
-<body class="nav-md">
-    <div class="container body">
-		<div class="main_container">
-			<div class="col-md-3 left_col">
-				<div class="left_col scroll-view" >
-					<div class="navbar nav_title" style="border: 0;">
-						<a class="site_title"><span> Research Record Management System </span></a>
-					</div>
-					<div class="clearfix"></div>
-			<!-- menu profile quick info -->
-            <div class="profile clearfix">
-              <div class="profile_pic">
-                <img src="img/final.jpg" alt="..." class="img-circle profile_img">
-              </div>
-              <div class="profile_info">
-                <span> <?php echo strtoupper($accname) ?> </span>
-                <h2> <?php echo strtoupper($acctype) ?> </h2>
-              </div>
+<body>
+	<div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h4>Research Record Mangement System</h4>
             </div>
-            <!-- /menu profile quick info -->
+            <div class="sidebar-header">
+                <h5 style="color: #00004d;"><?php echo strtoupper($accname) ?></h5>
+                <h6><?php echo strtoupper($acctype) ?></h6>
+            </div>
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="admindashboard.php"class="dropdown-toggle">Research</a>
+                    <!--<ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="#">Home 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Home 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Home 3</a>
+                        </li>
+                    </ul>-->
+                </li>
+                <li>
+                    <a href="updateAcc.php">Update Account</a>
+                </li>
+                <li>
+                    <a href="accesscode.php" class="dropdown-toggle">Access Codes</a>
+                    <!--<ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="#">Page 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 3</a>
+                        </li>
+                    </ul>-->
+                </li>
+                <li>
+                    <a href="book_reports.php?title=&dept=&status=&author=&from=0&to=2018">Reports</a>
+                </li>
+                <li>
+                    <a href="dept.php">Department</a>
+                </li>
+            </ul>
 
-            <br />
+            <ul class="list-unstyled CTAs">
+                <li>
+                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
+                </li>
+                <li>
+                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
+                </li>
+            </ul>
+        </nav>
 
-            <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <div class="nav side-menu">
-					<ul><a href="admindashboard.php"> MY RESEARCH </span></a></ul>
-					<ul><a href="updateAcc.php"> UPDATE ACCOUNT </a></ul>
-					<ul><a href="accesscode.php"> ACCESS CODE </a> </ul>
-					<?php
-                            $d = Date('Y-m-d');
+        <!-- Page Content  -->
+        <div id="content">
 
-                            $yr = explode("-", $d);
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
 
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Toggle Menu</span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
 
-
-                            $yr = explode("-", $d);
-
-
-
-
-                            $yr = explode("-", $d);
-
-
-
-                            echo '<ul><a href="book_reports.php?title=&dept=&status=&author=&from=0&to=' . $yr[0] . '" target="_blank"> REPORTS </a> </ul>';
-                          ?>
-
-          <ul><a class= "dashboard-active" href="dept.php">DEPARTMENT </a> </ul> </br>
-					<ul><a href="index.php"> Back to Home </a> </ul>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="index.php">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="new-login.php">Logout</a>
+                            </li>
+                            <!--<li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>-->
+                        </ul>
+                    </div>
                 </div>
-              </div>
+            </nav>
+           
 
-            </div>
-          </div>
-        </div>
-
-        <!-- page content -->
-        <div class="right_col" role="main" style= "min-height: 950px;>
-
-
-          <div class="login-page">
-            <script>
+           <!---- PLACE YOUR DIVS HERE --->
+            <!-- script               -->
+               <script>
 
               function lettersonly(input){
-                var regex= /[^ a-z () , .]/gi;
+                var regex= /[^ a-z-() , .]/gi;
                 input.value= input.value.replace(regex,"");
               }
               </script>
-              <br/><br/><br/>
-<div class="form">
-     <!-- adding department for any changes  -->
-
-  <form class="login-form">
-
-    <fieldset>
-      <legend>ADD DEPARTMENT</legend>
-      <input style="text-transform:capitalize"type="text"name="department" id="department"onkeyup="lettersonly(this)" placeholder="Department" required/>
-      <input style="text-transform:capitalize"type="text"name="college" id="college" onkeyup="lettersonly(this)" placeholder="College"/ required>
-            <button type="button" id="submit1" >ADD</button>
-    </fieldset>
-  </form>
-
-
-    <form class="search-form">
-
-        <fieldset>
+            
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                            <form>
+                            <div class="form-group">
+                              <fieldset>
+                                  <legend>ADD DEPARTMENT</legend>
+                                  <input style="text-transform:capitalize"type="text"name="department" id="department"onkeyup="lettersonly(this)" placeholder="Department" required/><br><br>
+                                  
+                                  <input style="text-transform:capitalize"type="text"name="college" id="college" onkeyup="lettersonly(this)" placeholder="College"/ required>
+                                  <br><br>
+                                  <button class="btn btn-primary" type="button" id="submit1" >ADD</button>
+                            </fieldset>
+                        </div>
+                            </form>
+                            </div>
+                    </div>
+                                
+            </div>
+            <div class="line"></div>
+            <div class="container">
+               
+                     <fieldset>
 
           <!-- delete department if needed -->
           <legend>DELETE DEPARTMENT</legend>
+                          <div class="row">
+                    <div class="col-lg-3">
 
     <!--  <input type="search" name="search" placeholder="Search.." autocomplete="off"> -->
       <select id="deldept" style="width:100%; font-size:14pt">
@@ -163,37 +205,45 @@
         </select>
 
           <br/><br/>
-            <button id="btn-del" style="background-color:red; font:12pt;">DELETE</button>
+            <button class="btn btn-danger" id="btn-del">DELETE</button>
       </fieldset>
-  </form>
-
-
-</div>
-</div>
-
-
-
-
-				    <div class="row tile_count"></div>
-          <!-- /top tiles -->
-              </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <!-- /page content -->
 
-      </div>
+
+
+
+
+
+
+
+
+
+
+
+           <!---- AYAW NAG LAPAS DIRI --->
+        </div>
     </div>
 
-    <!-- jQuery -->
-    <script src="js/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="js/bootstrap.min.js"></script>
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="js/jquery-3.3.1.slim.min.js"></script>
+    <!-- Popper.JS -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap.min-4.1.0.js"></script>
 
-    <!-- Custom Theme Scripts -->
-    <script src="js/custom.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+<!--      <script src="js/jquery.min.js"></script>-->
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
     <script src="js/searchdoc.js"></script>
-
-  </body>
+       
+	  
+</body>
 </html>
