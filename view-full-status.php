@@ -15,6 +15,16 @@ session_start();
   $accname = $_SESSION['gname'];
   $acctype = $_SESSION['type'];
   $uid = $_SESSION['uid'];
+  if($acctype==="admin"){
+    //echo "Admin ANG NAKALOGIN";
+    header("Location: admindashboard.php");
+  }else if($acctype==="INSTRUCTOR"){
+    //echo "Instructor ang naka login";
+
+    
+  }else if($acctype==="STUDENT"){
+    header("Location: index.php");
+  }
 
   include_once 'connection.php';
   $dbconfig = new dbconfig();
@@ -35,80 +45,116 @@ session_start();
  //echo $step_z;
 ?>
 
-
-
 <!DOCTYPE html>
-<html >
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title> Administrator </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--bootstrap-->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-min-4.1.0.css">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- scrollbar -->
+    <link rel="stylesheet" href="css/custom_scroll.css">
 
-    <!-- Custom Theme Style -->
-    <link rel="stylesheet" href="css/temp.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="css/custom.min.css">
-
+    <script defer src="js/solid.js"></script>
+    <script defer src="js/fontawesome.js"></script>
 
 </head>
-
-  <body class="nav-md" style="background-color: gray">
-    <p style="display: none;" id="trail_id"><?php echo $trail_id;?></p>
-    <p style="display: none;" id="fileloc"><?php echo $fileLoc;?></p>
-    <div class="container body">
-      <div class="main_container">
-        <div class="col-md-3 left_col">
-          <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-              <a class="site_title"><span> Research Record Management System </span></a>
+<body>
+	<div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h4>Research Record Mangement System</h4>
             </div>
-
-            <div class="clearfix"></div>
-
-            <!-- menu profile quick info -->
-            <div class="profile clearfix">
-              <div class="profile_pic">
-                <img src="img/final.jpg" alt="..." class="img-circle profile_img">
-              </div>
-              <div class="profile_info">
-                <span> <?php echo strtoupper($accname) ?> </span>
-                <h2> <?php echo strtoupper($acctype) ?> </h2>
-              </div>
+            <div class="sidebar-header">
+                <h5 style="color: #00004d;"><?php echo strtoupper($accname) ?></h5>
+                <h6><?php echo strtoupper($acctype) ?></h6>
             </div>
-            <!--/menu profile quick info-->
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Research</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="instructordashboard.php">Finished Reserch</a>
+                        </li>
+                        <li>
+                            <a href="instructor-on-process-paper.php">On-Process Research</a>
+                        </li>
+                        
+                    </ul>
+                </li>
+                <li>
+                    <a href="accesscode_instruct.php" class="dropdown-toggle">Access Codes</a>
+                    <!--<ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="#">Page 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 3</a>
+                        </li>
+                    </ul>-->
+                </li>
+                <li>
+                    <a href="book_reports.php?title=&dept=&status=&author=&from=0&to=2018">Reports</a>
+                </li>
+                
+            </ul>
 
-            <br />
+            <!--<ul class="list-unstyled CTAs">
+                <li>
+                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
+                </li>
+                <li>
+                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
+                </li>
+            </ul>-->
+        </nav>
 
-            <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <div class="nav side-menu">
-					<ul><a  href="instructordashboard.php"> MY FINISHED RESEARCH </span></a></ul>
-          <ul><a  class= "dashboard-active" href="instructor-on-process-paper.php"> MY On-Process RESEARCH </span></a></ul>
-					<ul><a href="accesscode_instruct.php"> ACCESS CODE </a> </ul>
-					 <?php
-                            $d = Date('Y-m-d');
-                            $yr = explode("-", $d);
-                            echo '<ul><a href="book_reports.php?title=&dept=&status=&author=&from=0&to=' . $yr[0] . '" target="_blank"> REPORTS </a> </ul>';
-                          ?>
-					</br>
-					<ul><a href="index.php"> Back to Home </a> </ul>
+        <!-- Page Content  -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Toggle Menu</span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="index.php">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="new-login.php">Logout</a>
+                            </li>
+                            <!--<li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>-->
+                        </ul>
+                    </div>
                 </div>
-              </div>
+            </nav>
+           
 
-            </div>
-          </div>
-        </div>
-
-        <!-- page content -->
-        <div class="right_col" role="main" style= "min-height: 700px;">
-			<div id= "instructor-frm-search" class= "frm-search" style= "font-size: 18px">
-
-
-        
-
-        <?php
+           <!---- PLACE YOUR DIVS HERE --->
+            
+            <?php
           $paper_stat = "";
           $date = "";
           $desc = "";
@@ -126,58 +172,67 @@ session_start();
             $date = $row['date'];
             $desc = $row['Description'];
             $trail_id = $row['id'];
+            $book_title = $row['book_title'];
             //$origin = $row['origin'];
           }
           
         ?>
-        
 
-				<b style="font-size:24pt;"><?php echo $row['book_title']; ?></b><br>
-        <b style="font-size:12pt;"> Author: 
-          <?php
-          $dbconfig= new dbconfig();
-          $con= $dbconfig -> getCon();
-          $query= "SELECT DISTINCT(a_id) as 'a_id' , a_lname as 'a_lname', SUBSTRING(a_fname, 1, 1) as 'a_fname' FROM author INNER JOIN junc_authorbook on author.a_id = junc_authorbook.aut_id WHERE junc_authorbook.book_id =$book_id";
-          $result = $con -> query($query);
-          $autorList ="";
-          if($result->num_rows>0){
-            while ($row1 = $result->fetch_assoc()) {
-            //  $autorList .= $row['a_lname'] . ", " . $row['a_fname'] . "; ";
-            ?>
-            <a href="author.php?aut_id=<?php echo $row1['a_id']; ?>" style="font-weight: bold; font-size: 14pt">  <?php echo $row1['a_lname'] . ", " . $row1['a_fname'] . "; ";?>
-              </a>
-        <?php }
-      } ?>
-        </b>
-        <br><br><br>
-         
-				<div id= "instructor-div-voidmain" class= "div-voidmain">
-					<div class="container">
+           <div class="container">
+            <div class="row" style="padding-left: 15px;"> <h2><em><?php echo $book_title ?></em></h2> </div>
+            <div class="row" style="padding-left: 15px;">
+                <b style="font-size:12pt;"> Author: 
+                  <?php
+                      $dbconfig= new dbconfig();
+                      $con= $dbconfig -> getCon();
+                      $query= "SELECT DISTINCT(a_id) as 'a_id' , a_lname as 'a_lname', SUBSTRING(a_fname, 1, 1) as 'a_fname' FROM author INNER JOIN junc_authorbook on author.a_id = junc_authorbook.aut_id WHERE junc_authorbook.book_id =$book_id";
+                      $result = $con -> query($query);
+                      $autorList ="";
+                      if($result->num_rows>0){
+                        while ($row1 = $result->fetch_assoc()) {
+                        //  $autorList .= $row['a_lname'] . ", " . $row['a_fname'] . "; ";
+                        ?>
+                        <a href="author.php?aut_id=<?php echo $row1['a_id']; ?>" style="font-weight: bold; font-size: 14pt">  <?php echo $row1['a_lname'] . ", " . $row1['a_fname'] . "; ";?>
+                          </a>
+                    <?php }
+                  } ?>
+                </b>
+            </div>
+            <br>
+            <br>
+
             <div class="row">
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col" colspan="3"><h3><?php 
+                    <td scope="col" colspan="2"><h3><?php 
                     //$date =  date('l d F Y');
                     $long = strtotime($date);
                     $date = date('F d, Y', $long);
                     $time = date('h:i:s a', $long);
 
-                    echo 'Paper status: <em style="font-size: 18pt; font-weight: bold">' . $paper_stat . '</em>' ?></h3></th>
-                    
+                    echo 'Paper status: <em style="font-size: 18pt; font-weight: bold">' . $paper_stat . '</em>' ?></h3></td>
+                    <td scope="col">
+                        <div class="col-md-3">
+                        <button type="button" id="viewall-instructor" name="<?php echo $book_id ?>" class="btn btn-info">
+                            <i class="fas fa-eye"></i>
+                            <span>View all status</span>
+                        </button>
+                    </div>
+                    </td>
                     
                   </tr>
                 </thead>
 
                 <tbody>
                   <tr>
-                    <td scope="col" style="width: 15%">Date</td>
-                    <td scope="col" style="width: 85%"><?php echo $date . " at " . $time ?></td>
+                    <td scope="col" style="width: 15%" >Date</td>
+                    <td scope="col" style="width: 85%" colspan="2"><?php echo $date . " at " . $time ?></td>
                   </tr>
                   <tr>
                     
-                    <td scope="col">Description</td>
-                    <td scope="col"><?php echo($desc)?></td>
+                    <td scope="col" >Description</td>
+                    <td scope="col" ><?php echo($desc)?></td>
                   </tr>
                   
                   <?php
@@ -190,14 +245,36 @@ session_start();
                 </tbody>
                 <th></th>
               </table>
+          </div>
 
-              <br>
+          <div class="row">
               <?php
                 if($required!==""){
 
                   if($required==="paper"){
+
                     if($fileLoc===""){
-                      echo '<div class="container">
+
+                        echo '<p id="fileloc" style="display: none;">'. $fileLoc .'</p>
+          <p id="trail_id" style="display: none;">'. $trail_id .'</p>';
+
+                        if($step_z!=="9"){
+                            echo '<div class="container">
+                    <div class="row">
+                      <div class="col-md-12" style="font-size: 18pt; font-weight: bold;">
+                        Paper Revision <em style="color: red">*Required</em>
+                      </div>
+                      <div class="col-md-12" style="width: 100%; height: 2px; background-color: blue;"></div>
+                       <br>
+                      <div class="col-md-12">
+                        <button class="btn btn-primary btn-sm" id="submit-paper" data-toggle="modal" data-target="#modalsubmit">Submit paper</button>
+                      </div>
+                    
+                      
+                    </div>
+                  </div><br>';
+                        }else{
+                            echo '<div class="container">
                     <div class="row">
                       <div class="col-md-12" style="font-size: 18pt; font-weight: bold;">
                         Paper Revision <em style="color: red">*Required</em>
@@ -209,6 +286,8 @@ session_start();
                       
                     </div>
                   </div><br>';
+                        }
+                      
                 }else{
                   echo '<div class="container">
                     <div class="row">
@@ -216,12 +295,12 @@ session_start();
                         Paper Revision
                       </div>
                       <div class="col-md-12" style="width: 100%; height: 2px; background-color: blue;"></div>
-                       <br><br>
+                       <br>
                       <div class="col-md-12">
                         <table class="table">
                           <thead>
                             <tr">
-                              <td scope="col" style="width: 100%">Revision 1: <a href="'. $fileLoc .'"><em>'. $str[1] .'</em></a></td>
+                              <td scope="col" style="width: 100%">Revision : <em id="fileloc" style="display: none;">'. $fileLoc .'</em> <em id="trail_id" style="display: none;">'. $trail_id .'</em> <a href="'. $fileLoc .'"><em>'. $str[1] .'</em></a></td>
                               <td scope="col">
                                 <button class="btn btn-sm btn-danger"  data-toggle="modal" data-target="#modaladdnew">Change Submitted Paper</button>
                               </td>
@@ -282,16 +361,9 @@ session_start();
                         Paper Publication <em style="color: red">*Required</em>
                       </div>
                       <div class="col-md-12" style="width: 100%; height: 2px; background-color: blue;"></div>
-                       <br><br>
+                       <br>
                       <div class="col-md-12" >
-                        <table class="table">
-                          <thead>
-                            <tr">
-                              <td scope="col" style="width: 100%"><em style="color: red;">Please provide publication information to the research unit.</em></td>
-                              
-                            </tr>
-                          </thead>
-                        </table>
+                        <em style="color: red;">Please provide publication information to the research unit.</em>
                       </div>
                       
                     </div>
@@ -339,32 +411,7 @@ session_start();
                   </div><br>
               <br>';
                   }
-                  $con= $dbconfig -> getCon();
-                  $query= "SELECT `documents`, `orig_name` FROM `documents` WHERE `book_id` = $book_id";
-                  $result2 = $con -> query($query);
-                  if($result2->num_rows>0){
-                    echo '<br><br><div class="row">
-                      <div class="col-md-10" style="font-size: 18pt; font-weight: bold;">
-                       Files and Certificates
-                      </div>
-                      <div class="col-md-2"><button class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#modaldis">Add Files</button></div>
-                      <div class="col-md-12" style="width: 100%; height: 2px; background-color: blue;"></div>
-                        <br>
-                        <br>
-                        <div class="col-md-12">
-                          <em style="color: red;">
-                              <ul>';
-                    while ($row=$result2->fetch_assoc()) {
-                      echo '<li><a href="'. $row['documents'] .'">'. $row['orig_name'] .'</a></li>';
-                    }
-                    echo '</ul>
-                          </em>
-                        </div>
-          
-                    </div>
-                    
-                  </div><br>';
-                  }
+                  
                 }elseif ($required==="awards"){
                     ///echo "string";
                     $con= $dbconfig -> getCon();
@@ -375,7 +422,7 @@ session_start();
                       echo '<div class="container">
                     <div class="row">
                       <div class="col-md-12" style="font-size: 18pt; font-weight: bold;">
-                        Paper Dissemination Information
+                        Paper Awards
                       </div>
                       
                        <div class="col-md-12" style="width: 100%; height: 2px; background-color: blue;"></div>
@@ -408,6 +455,18 @@ session_start();
                     </div>
                   </div><br>
               <br>';
+                  }else{
+                    echo '<div class="container">
+                    <div class="row">
+                      <div class="col-md-12" style="font-size: 18pt; font-weight: bold;">
+                        Paper Awards
+                      </div>
+                      
+                       <div class="col-md-12" style="width: 100%; height: 2px; background-color: blue;"></div>
+                       <div class="col-md-12">
+                       <br>
+                       No awards receive yet.
+                       </div>';
                   }
                   
                 }elseif ($required==="util"){
@@ -458,7 +517,9 @@ session_start();
                 }
 
               ?>
+          </div>
               <br>
+              
               
                           
                             
@@ -474,15 +535,12 @@ session_start();
                       $origin = $row['origin'];
 
               ?>
-              
+              <br>
               <div class="container">
                 <div class="row">
                   <div class="col-md-7" style="font-size: 18pt; font-weight: bold;">Summary of Comments and Suggestion</div>
                   <div class="col-md-5" style="height: 35px; font-size: 15pt">Originator: <em><?php if($origin===""){echo "Not Available";}else{echo $origin; } ?></em></div>
-                </div>
-                
-              </div>
-                <table class="table" style="border: 1px solid black; border-collapse: collapse;">
+                  <table class="table" style="border: 1px solid black; border-collapse: collapse;">
                     
                     <tbody>
                       <?php
@@ -519,34 +577,60 @@ session_start();
                       
                     </tbody>
                 </table>
+                </div>
+                <br>
+                
+                     <?php
+                    $con= $dbconfig -> getCon();
+                  $query= "SELECT `documents`, `orig_name` FROM `documents` WHERE `book_id` = $book_id LIMIT 5 ";
+                  $result2 = $con -> query($query);
+                  if($result2->num_rows>0){
+                    echo '<br><br><div class="row">
+                      <div class="col-md-12" style="font-size: 18pt; font-weight: bold;">
+                       Files and Certificates
+                      </div>
+                      
+                      <div class="col-md-12" style="width: 100%; height: 2px; background-color: blue;"></div>
+                        <br>
+                        
+                        <div class="col-md-12">
+                          <em style="color: red;">
+                              <ul>';
+                    while ($row=$result2->fetch_assoc()) {
+                      echo '<li><a href="'. $row['documents'] .'">'. $row['orig_name'] .'</a></li>';
+                    }
+                    echo '</ul>
+                          </em>
+
+                        </div>
+                        <div class="col-md-12" style="font-weight: bold; font-size: 14pt; padding-left: 30px; color: #0052cc; "><a style="text-decoration: underline;" href="documents.php?book_id='. $book_id .'">View all Documents of this paper</a></div>
+          
+                    </div>
+                    
+                  </div><br>';
+                  }
+
+                  ?>
+                
+                
+              </div>
+                
                 <br>
                 <br>
                 <br>
             </div>
-            
-          </div>
-					
-				
+           </div>
 
-			 </div>
-
-          <!-- top tiles -->
-          <div class="row tile_count"></div>
-          <!-- /top tiles -->
-            </div>
-        </div>
-        <!-- /page content -->
-
-      </div>
-      <!--addnew  modal-->
+            <!--addnew  modal-->
                 <div class="modal fade" id="modaladdnew" role="dialog">
                     <div class="modal-dialog">
                     
                       <!-- Modal content-->
                       <div class="modal-content">
                         <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          
                           <h4 class="modal-title" id="modal-title">Change Revision 1</h4>
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
                           <form id="fileForm-change">
@@ -567,6 +651,35 @@ session_start();
                     </div>
                   </div>
 
+                  <div class="modal fade" id="modalsubmit" role="dialog">
+                    <div class="modal-dialog">
+                    
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          
+                          <h4 class="modal-title" id="modal-title">Upload Revision </h4>
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                          <form id="fileForm-upload">
+                            
+                              <div class="form-group" style="">
+                              
+                                <input type="file" class="form-control-file" id="file-upload"  name="file-upload">
+                                
+                              </div>
+                              
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button class="btn btn-success" id="uploadpaper">Submit</button>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+
                   <!--dissemination modal-->
                   <div class="modal fade" id="modaldis" role="dialog">
                     <div class="modal-dialog">
@@ -574,8 +687,9 @@ session_start();
                       <!-- Modal content-->
                       <div class="modal-content">
                         <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          
                           <h4 class="modal-title" id="modal-title-dis">Supporting Documents:</h4>
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
                           <form id="dis-form">
@@ -597,79 +711,42 @@ session_start();
                   </div>
 
 
-      <!--- -->
-  <!--<div class="modal fade" id="ModaladdNew" role="dialog">
-    <div class="modal-dialog">
-    
-     
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title" id="modal-title">Add New Research</h4>
-        </div>
-        <div class="modal-body">
-          <form action="/action_page.php">
-            <div class="form-group">
-                <label for="fname">Title:</label>
-                <input type="text" class="form-control" id="title">
-            </div>
-            <div class="form-group">
-                <label for="fname">Username:</label>
-                <input type="text" class="form-control" id="reg_uname">
-            </div>
-              <div class="form-group">
-                <label for="mname">Password:</label>
-                <input type="Password" class="form-control" id="reg_upass">
-            </div>
-            <div class="form-group">
-                <label for="acc_type">Account Type:</label><br>
-                <select class="btn btn-primary" id="acc_type">
-                  <option class="btn btn-default">User</option>
-                  <option class="btn btn-default">Admin</option>
-            </select>
-              </div>
-              <div class="form-group">
-                <center>
-                  <button type="button" class="btn btn-success" id="btn_login_register">Register</button>
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                </center>
-                
-              </div>
-              <!--<div class="form-group">
-                <fieldset>
-                  <b style="color: red">For Demo Purposes</b><br>
-                  Admin login:<br>Username = admin<br>Password = 1234<br><br>User login:<br>Username = loyd<br>Password = 1111
-                </fieldset>
-                
-              </div>-->
-              
-              
-          <!--</form>
-        </div>
-        <div class="modal-footer">
-          <a href="#"><p class="text-center" style="font-weight: bold;" id="reg">Register</p></a>
-        </div>
-      </div>
-      
-    </div>
-  </div>-->
 
 
 
+
+
+
+
+
+
+
+           <!---- AYAW NAG LAPAS DIRI --->
+        </div>
     </div>
 
-    <!-- jQuery -->
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="js/jquery-3.3.1.slim.min.js"></script>
+    <!-- Popper.JS -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap.min-4.1.0.js"></script>
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
-    <script src="js/jquery.form.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script src="js/searchdoc.js"></script>
     <script src="js/jquery.form.min.js"></script>
     <!-- Bootstrap -->
     <!--<script src="js/bootstrap.min.js"></script>-->
     <script type="text/javascript" src="js/on-process.js"></script>
     <script type="text/javascript" src="js/upload-revision.js"></script>
-    <!-- Custom Theme Scripts -->
-    <!--<script src="js/custom.min.js"></script>-->
-
-  </body>
+       
+	  
+</body>
 </html>

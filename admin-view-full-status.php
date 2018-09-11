@@ -329,6 +329,8 @@
                               <div class="col-md-6" style="font-size: 18pt; font-weight: bold;">
                                 Paper Publication Information
                               </div>
+                              <br>
+                              <br>
                               <div class="col-md-6"><button class="btn btn-primary" style="float: right;" id="btn-add-new-pub" data-toggle="modal" data-target="#modaladdpub">Add new Publication</button></div>
                               <div class="col-md-12" style="width: 100%; height: 2px; background-color: blue;"></div>
                               <br><br>
@@ -376,8 +378,9 @@
                                 Paper Publication Information <em style="color: red">*Required</em>
                               </div>
                               <div class="col-md-6"><button class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#modaladdpub">Add new Publication</button></div>
+                              <br>
+                              <br>
                               <div class="col-md-12" style="width: 100%; height: 2px; background-color: blue;"></div>
-                                <br>
                                 <br>
                                 <div class="col-md-12"><em style="color: red;">Please click the \'Add new Publication\' button to provide Publication information.</em></div>
                   
@@ -449,8 +452,9 @@
                                 Paper Dissemination Information <em style="color: red">*Required</em>
                               </div>
                               <div class="col-md-2"><button class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#modaldis">Add new Dissemination</button></div>
+                              <br>
+                              <br>
                               <div class="col-md-12" style="width: 100%; height: 2px; background-color: blue;"></div>
-                                <br>
                                 <br>
                                 <div class="col-md-12"><em style="color: red;">Please click the \'Add new Dissemination\' button to provide dissemination information.</em></div>
                   
@@ -480,8 +484,11 @@
                               <div class="col-md-10" style="font-size: 18pt; font-weight: bold;">
                                 Paper Dissemination Information
                               </div>
+                              <br>
+                              <br>
                               <div class="col-md-2"><button class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#modalutil" id="btn-util-addnew">Add new Utilization</button></div>
-                              <div class="col-md-12" style="width: 100%; height: 2px; background-color: blue;">
+                              <div class="col-md-12" style="width: 100%; height: 2px; background-color: blue;"></div>
+                               <div class="col-md-12" >
                                 <table class="table">
                                   <thead style="font-size: 14pt; font-weight: bold">
                                     <tr">
@@ -508,7 +515,7 @@
                               </div>
                               
                             </div>
-                          </div>
+                          
                       
                       ';
 
@@ -523,8 +530,9 @@
                                 Paper Utilization Information <em style="color: red">*Required</em>
                               </div>
                               <div class="col-md-2"><button class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#modalutil">Add new Utilization</button></div>
+                              <br>
+                              <br>
                               <div class="col-md-12" style="width: 100%; height: 2px; background-color: blue;"></div>
-                                <br>
                                 <br>
                                 <div class="col-md-12"><em style="color: red;">Please click the \'Add new Utilization\' button to provide utilization information.</em></div>
                   
@@ -548,10 +556,12 @@
                               $query= "UPDATE `paper_trail` SET `requirements` = '1' WHERE `paper_trail`.`id` = $trail_id";
                               $result3 = $con -> query($query);
                               echo '<div class="container">
-                            <div class="row">
+                            <div class="row" style="padding-left: 15px;">
                               <div class="col-md-10" style="font-size: 18pt; font-weight: bold;">
                                 Paper Awards
                               </div>
+                              <br>
+                              <br>
                               <div class="col-md-2"><button class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#modalawards" id="btn-awards-addnew">Add new Awards</button></div>
                               <div class="col-md-12" style="width: 100%; height: 2px; background-color: blue;"></diV>
                               <br><br>
@@ -569,7 +579,7 @@
                                   </thead><tbody>';
                                   $counter=0;
                                   while ($rowdis= $result2->fetch_assoc()) {
-                                    echo '   <td scope="col" id="awards-name-td-'. $counter .'">'. $rowdis['awards'] .'</td>
+                                    echo '<tr><td scope="col" id="awards-name-td-'. $counter .'">'. $rowdis['awards'] .'</td>
                                       <td scope="col" id="awards-parties-td-'. $counter .'">'. $rowdis['parties'] .'</td>
                                       <td scope="col" id="awards-loc-td-'. $counter .'">'. $rowdis['location'] .'</td>
                                       <td scope="col" id="awards-desc-td-'. $counter .'">'. $rowdis['description'] .'</td>
@@ -592,20 +602,17 @@
                             $con= $dbconfig -> getCon();
                               $query= "UPDATE `paper_trail` SET `requirements` = '1' WHERE `paper_trail`.`id` = $trail_id";
                               $result2 = $con -> query($query);
-                            echo '<div class="container">
-                            <div class="row">
+                            echo '<div class="row" style="padding-left: 15px;">
                               <div class="col-md-10" style="font-size: 18pt; font-weight: bold;">
                                 Paper Awards 
                               </div>
                               <div class="col-md-2"><button class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#modalawards" id="btn-awards-addnew">Add new Awards</button></div>
+                              <br>
+                              <br>
                               <div class="col-md-12" style="width: 100%; height: 2px; background-color: blue;"></div>
-                                <br>
-                                <br>
+
                                 <div class="col-md-12"><em style="color: red;">Not Available</em></div>
-                  
-                            </div>
-                            
-                          </div><br>';
+                            </div>';
                           }
 
                         }
@@ -614,10 +621,15 @@
                         }
 
                       ?>
-                </div>
+                      
+                            
+                            
+                            
+                          
+               
                 
             </div>
-            <br>
+            
             <br>
             <br>
             <div class="container">
@@ -700,14 +712,14 @@
 
               <?php
                     $con= $dbconfig -> getCon();
-                  $query= "SELECT `documents`, `orig_name` FROM `documents` WHERE `book_id` = $book_id";
+                  $query= "SELECT `documents`, `orig_name` FROM `documents` WHERE `book_id` = $book_id LIMIT 5 ";
                   $result2 = $con -> query($query);
                   if($result2->num_rows>0){
                     echo '<br><br><div class="row">
-                      <div class="col-md-10" style="font-size: 18pt; font-weight: bold;">
+                      <div class="col-md-12" style="font-size: 18pt; font-weight: bold;">
                        Files and Certificates
                       </div>
-                      <div class="col-md-2"></div>
+                      
                       <div class="col-md-12" style="width: 100%; height: 2px; background-color: blue;"></div>
                         <br>
                         
@@ -719,7 +731,9 @@
                     }
                     echo '</ul>
                           </em>
+
                         </div>
+                        <div class="col-md-12" style="font-weight: bold; font-size: 14pt; padding-left: 30px; color: #0052cc; "><a style="text-decoration: underline;" href="documents.php?book_id='. $book_id .'">View all Documents of this paper</a></div>
           
                     </div>
                     
@@ -958,7 +972,7 @@
                         <div class="modal-body">
                           <form id="awards-form">
                             <div class="form-group">
-                              <input type="text" name="awards_book_id" id="awards_book_id" value="<?php echo $_GET['book_id']; ?>" style="display: ;">
+                              <input type="text" name="awards_book_id" id="awards_book_id" value="<?php echo $_GET['book_id']; ?>" style="display:none ;">
                               <input type="text" name=awards-trail_id" id="awards-trail_id" value="<?php echo $_GET['trail']; ?>" style="display: none;">
                             </div>
                             <div class="form-group">

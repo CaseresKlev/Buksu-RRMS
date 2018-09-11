@@ -1,81 +1,162 @@
 <?php
 //echo $_POST['title'];
-
+    
     ///----FILE DOCX-----///
     include_once 'connection.php';
-    if(isset($_GET['trail_id']) && isset($_GET['file'])){
+    if(isset($_GET['trail_id']) && isset($_GET['file']) && isset($_GET['action'])){
         $trail = $_GET['trail_id'];
         $filedel = $_GET['file'];
+        $action = $_GET['action'];
+        //echo "$action";
         //echo $filedel;
     //echo $trail;
+        if($action==="revise"){
+            $file = $_FILES['file'];
+            $tempfile = $_FILES['file']['tmp_name'];
+            //echo "$tempfile";
+            $filename = $_FILES['file']['name'];
+            $filesize = $_FILES['file']['size'];
+            $filetype = $_FILES['file']['type'];
+            $error = $_FILES['file']['error'];
+            $filesize = $_FILES['file']['size'];
+            $fileext = explode(".",$filename);
+            $extension = strtolower(end($fileext));
+            $allowedFile = array('pdf');
 
 
-    $file = $_FILES['file'];
-    $tempfile = $_FILES['file']['tmp_name'];
-    //echo "$tempfile";
-    $filename = $_FILES['file']['name'];
-    $filesize = $_FILES['file']['size'];
-    $filetype = $_FILES['file']['type'];
-    $error = $_FILES['file']['error'];
-    $filesize = $_FILES['file']['size'];
-    $fileext = explode(".",$filename);
-    $extension = strtolower(end($fileext));
-    $allowedFile = array('pdf');
+            //cover
+            //echo "$filename";
+            //
 
 
-    //cover
+            if(!empty($_FILES['file'])){
+                //$coverLoc = "fhrdghj";
+                $cover = $_FILES['file'];
+                $coverTemp = $_FILES['file']['tmp_name'];
+                $covername = $_FILES['file']['name'];
+                $coversize = $_FILES['file']['size'];
+                $covertype = $_FILES['file']['type'];
+                $covererror = $_FILES['file']['error'];
+                $coversize = $_FILES['file']['size'];
+                $coverext = explode(".",$covername);
+                $coverextension = strtolower(end($coverext));
+                $coverallowed = array('pdf');
+                if(in_array($coverextension, $coverallowed)){
+                    if($error===0){
+                        //2MB Allowed
+                        if($coversize<200000000){
+                            $newCoverName = uniqid('',true) . "." . $coverextension;
+                            $loc = "revision/" . $newCoverName;
+                            if(move_uploaded_file($coverTemp, $loc)){
+                              $coverLoc = "revision/" . $newCoverName;
 
-    $coverLoc = "fhrdghj";
+                                $dbconfig = new dbconfig();
+                                $conn = $dbconfig->getCon();
+                                $query= "UPDATE `paper_trail` SET `file_loc` = '$coverLoc', `requirements` = '1' WHERE `paper_trail`.`id` = $trail";
+                                $result = $conn ->query($query);
 
-
-    if(!empty($_FILES['file'])){
-        $cover = $_FILES['file'];
-        $coverTemp = $_FILES['file']['tmp_name'];
-        $covername = $_FILES['file']['name'];
-        $coversize = $_FILES['file']['size'];
-        $covertype = $_FILES['file']['type'];
-        $covererror = $_FILES['file']['error'];
-        $coversize = $_FILES['file']['size'];
-        $coverext = explode(".",$covername);
-        $coverextension = strtolower(end($coverext));
-        $coverallowed = array('pdf');
-        if(in_array($coverextension, $coverallowed)){
-            if($error===0){
-                //2MB Allowed
-                if($coversize<200000000){
-                    $newCoverName = uniqid('',true) . "." . $coverextension;
-                    $loc = "revision/" . $newCoverName;
-                    if(move_uploaded_file($coverTemp, $loc)){
-                      $coverLoc = "revision/" . $newCoverName;
-
-                        $dbconfig = new dbconfig();
-                        $conn = $dbconfig->getCon();
-                        $query= "UPDATE `paper_trail` SET `file_loc` = '$coverLoc', `requirements` = '1' WHERE `paper_trail`.`id` = $trail";
-                        $result = $conn ->query($query);
-
-                        if($result){
-                            if($filedel!==""){
-                                unlink($filedel);
+                                if($result){
+                                    if($filedel!==""){
+                                        //unlink($filedel);
+                                    }
+                                    
+                                    echo "Success";
+                                }
                             }
-                            
-                            echo "Success";
-                        }
-                    }
 
-                }else{
-                    echo "#error-Cover Exceeded 2MB size";
-                }
+                        }else{
+                            echo "#error-Cover Exceeded 2MB size";
+                        }
+                    }else{
+                        echo "#error-There was error Uploading your Cover!";
+                    }
             }else{
-                echo "#error-There was error Uploading your Cover!";
+                echo "#error-File is not Valid! Upload pdf file only.";
             }
+            }else{
+                 //$coverLoc = "cover/default-book-cover.png";
+            }
+        }else if ($action==="save") {
+            //alert("saving");
+            $file = $_FILES['file-upload'];
+            $tempfile = $_FILES['file-upload']['tmp_name'];
+            //echo "$tempfile";
+            $filename = $_FILES['file-upload']['name'];
+            $filesize = $_FILES['file-upload']['size'];
+            $filetype = $_FILES['file-upload']['type'];
+            $error = $_FILES['file-upload']['error'];
+            $filesize = $_FILES['file-upload']['size'];
+            $fileext = explode(".",$filename);
+            $extension = strtolower(end($fileext));
+            $allowedFile = array('pdf');
+
+
+            //cover
+            //echo "$filename";
+            //
+
+            //$coverLoc = "fhrdghj";
+
+            if(!empty($_FILES['file-upload'])){
+                
+                $cover = $_FILES['file-upload'];
+                $coverTemp = $_FILES['file-upload']['tmp_name'];
+                $covername = $_FILES['file-upload']['name'];
+                $coversize = $_FILES['file-upload']['size'];
+                $covertype = $_FILES['file-upload']['type'];
+                $covererror = $_FILES['file-upload']['error'];
+                $coversize = $_FILES['file-upload']['size'];
+                $coverext = explode(".",$covername);
+                $coverextension = strtolower(end($coverext));
+                $coverallowed = array('pdf');
+
+                if(in_array($coverextension, $coverallowed)){
+
+                    if($error===0){
+
+                        //2MB Allowed
+                        if($coversize<200000000){
+
+                            $newCoverName = uniqid('',true) . "." . $coverextension;
+                            $loc = "revision/" . $newCoverName;
+
+                            if(move_uploaded_file($coverTemp, $loc)){
+                                echo "$loc";
+                              $coverLoc = "revision/" . $newCoverName;
+
+                                $dbconfig = new dbconfig();
+                                $conn = $dbconfig->getCon();
+                                $query= "UPDATE `paper_trail` SET `file_loc` = '$coverLoc', `requirements` = '1' WHERE `paper_trail`.`id` = $trail";
+                                //echo "$query";
+                                $result = $conn ->query($query);
+
+                                if($result){
+                                    if($filedel!==""){
+                                        //unlink($filedel);
+                                    }
+                                    
+                                    echo "Success";
+                                }
+                            }
+
+                        }else{
+                            echo "#error-Cover Exceeded 2MB size";
+                        }
+                    }else{
+                        echo "#error-There was error Uploading your Cover!";
+                    }
+            }else{
+                echo "#error-File is not Valid! Upload pdf file only.";
+            }
+            }else{
+                 //$coverLoc = "cover/default-book-cover.png";
+            }
+        
+        }
+
+    
     }else{
-        echo "#error-Cover is Not Valid!";
-    }
-    }else{
-         $coverLoc = "cover/default-book-cover.png";
-    }
-    }else{
-        header("location: admindashboard.php");
+        //header("location: admindashboard.php");
     }
     
 

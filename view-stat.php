@@ -153,16 +153,16 @@
            <!---- PLACE YOUR DIVS HERE --->
            <div class="container">
                <div class="col-md-12" style="font-size: 22pt"><b><i> <?php echo $book_title ?></i> </b></div>
-               <?php
-                $dbconfig = new dbconfig();
-                $conn = $dbconfig->getCon();
-                $query = "SELECT author.a_id, CONCAT(author.a_lname, ', ' , SUBSTRING(author.a_fname, 1, 1), ';') as 'author' FROM author INNER JOIN junc_authorbook on junc_authorbook.aut_id = author.a_id WHERE junc_authorbook.book_id=" . $row['book_id'];
-                $result = $conn->query($query);
-                if($result->num_rows>0){
-                    $row = $result->fetch_assoc();
-                    echo'<div class="col-md-12" ><b style="color: gray"> '. $row['author'] .' </b></div>';
-                }
-               ?>
+                 <?php
+                  $dbconfig = new dbconfig();
+                  $conn = $dbconfig->getCon();
+                  $query = "SELECT author.a_id, CONCAT(author.a_lname, ', ' , SUBSTRING(author.a_fname, 1, 1), ';') as 'author' FROM author INNER JOIN junc_authorbook on junc_authorbook.aut_id = author.a_id WHERE junc_authorbook.book_id=" . $row['book_id'];
+                  $result = $conn->query($query);
+                  if($result->num_rows>0){
+                      $row = $result->fetch_assoc();
+                      echo'<div class="col-md-12" ><b style="color: gray"> '. $row['author'] .' </b></div>';
+                  }
+                 ?>
                <br>
                <br>
                <div class="row">

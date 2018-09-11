@@ -2,17 +2,16 @@
 
   session_start();
 
-  $book_id = "";
+
   if(isset($_SESSION['uid'])){
     //print_r($_SESSION);
-    $book_id = $_GET['book_id'];
   }else{
     header("Location: index.php");
   }
 
   $accname = $_SESSION['gname'];
   $acctype = $_SESSION['type'];
-   $uid = $_SESSION['uid'];
+  $uid = $_SESSION['uid'];
   if($acctype==="admin"){
     //echo "Admin ANG NAKALOGIN";
     header("Location: admindashboard.php");
@@ -136,99 +135,57 @@
            
 
            <!---- PLACE YOUR DIVS HERE --->
-            
-           <div class="container">
-                <?php
-
-                  include_once 'connection.php';
-                  $dbconfig = new dbconfig();
-                  $conn = $dbconfig->getCon();
-                  $query = "SELECT book.book_title, paper_stat.title, isdone, date FROM paper_trail INNER JOIN book on book.book_id = paper_trail.book_id INNER JOIN paper_stat on paper_stat.id = paper_trail.p_sat_id WHERE book.book_id = $book_id";
-                  $result = $conn ->query($query);
-                  if($result->num_rows>0){
-                    $row = $result->fetch_assoc();
-                  }
-                  
-                ?>
-
-               <div class="row"  style="padding-left: 15px">
-                   <em><h2><?php echo $row['book_title']; ?><h2></em>
-               </div>
-               <div class="row"  style="padding-left: 15px">
-                   <b style="font-size:12pt;"> Author: 
-                        <?php
-                          $dbconfig= new dbconfig();
-                          $con= $dbconfig -> getCon();
-                          $query= "SELECT DISTINCT(a_id) as 'a_id' , a_lname as 'a_lname', SUBSTRING(a_fname, 1, 1) as 'a_fname' FROM author INNER JOIN junc_authorbook on author.a_id = junc_authorbook.aut_id WHERE junc_authorbook.book_id =$book_id";
-                          $result = $con -> query($query);
-                          $autorList ="";
-                          if($result->num_rows>0){
-                            while ($row1 = $result->fetch_assoc()) {
-                            //  $autorList .= $row['a_lname'] . ", " . $row['a_fname'] . "; ";
-                            ?>
-                            <a href="author.php?aut_id=<?php echo $row1['a_id']; ?>" style="font-weight: bold; font-size: 14pt; text-decoration: underline;">  <?php echo $row1['a_lname'] . ", " . $row1['a_fname'] . "; ";?>
-                              </a>
-                        <?php }
-                      } ?>
-                    </b>
-               </div>
-               <br>
-               <br>
-               <div class="row" style="padding-left: 15px">
-                   <h3>Paper Status</h3>
-               </div>
-               <div class="row">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Step</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Status</th>
-                    
-                  </tr>
-                </thead>
-
-                <tbody>
-                  <?php
-
-                    include_once 'connection.php';
-                    $dbconfig = new dbconfig();
-                    $conn = $dbconfig->getCon();
-                    $query = "SELECT paper_trail.id, paper_trail.requirements, book.book_title, p_sat_id, paper_stat.title, isdone, date FROM paper_trail INNER JOIN book on book.book_id = paper_trail.book_id INNER JOIN paper_stat on paper_stat.id = paper_trail.p_sat_id WHERE book.book_id =$book_id";
-                    $result = $conn ->query($query);
-                    if($result->num_rows>0){
-                      while($rowDis = $result->fetch_assoc()){
-
-                        if($rowDis['requirements']==="1"){
-                           echo '<tr>
-                                <th scope="row">' . $rowDis['p_sat_id'] .'</th>
-                                <th scope="row"><a href="view-full-status.php?trail=' . $rowDis['id'] . '&book_id=' . $book_id . '"style="text-decoration: underline">' . $rowDis['title'] . '</a></th>
-                                <td style="background-color: #66ff66">Done</td>
-                                
-                              </tr>';
-                            }else{
-                              echo '<tr>
-                                <th scope="row">' . $rowDis['p_sat_id'] .'</th>
-                                <th scope="row"><a href="view-full-status.php?trail=' . $rowDis['id'] . '&book_id=' . $book_id . '" style="text-decoration: underline">' . $rowDis['title'] . '</a></th>
-                                <td style="background-color: #ffb84d">Some requirements are missing.</td>
-                                
-                              </tr>';
-                            }
-                       
-                    }
-                  }
-                    
-                  ?>
-
-                  
-                  
-                </tbody>
-                <th></th>
-              </table>
+            <div class="container" style="overflow: scroll; height: 60%" id="chat">
+                <div class="row" id="sender" style="width: 80%; ">
+                    <div class="col-md-12">
+                        <h5 style="font-weight: bold;">Research Unit</h5>
+                    </div>
+                    <div class="col-md-12" style="background-color: #00cccc; height: auto; border-radius: 25px;">
+                        <h5>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged
+                        </h5>
+                        <div class="row" style="padding-left: 15px;">
+                            July 15, 2018 5:56PM
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row" id="sender" style="width: 80%; float: right;">
+                    <div class="col-md-12">
+                        <h5 style="font-weight: bold; float: right;">Loyd</h5>
+                    </div>
+                    <div class="col-md-12" style="background-color:  #538cc6; height: auto; border-radius: 25px;">
+                        <h5>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged
+                        </h5>
+                        <div class="row" style="padding-left: 15px;">
+                            July 15, 2018 5:56PM
+                        </div>
+                    </div>
+                </div>
+                
+                <br>
+                
             </div>
-               <hr>
-           </div>
+            <br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10">
+                        <textarea cols="50" style="width: 100%; resize: none" rows="4"></textarea>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-success btn-md">Send</button>
+                    </div>
+                    
+                </div>
+            </div>
+            <br>
+            <br>
 
+
+           
+            
             
 
 
@@ -262,6 +219,7 @@
     </script>
 
     <script src="js/searchdoc.js"></script>
+    <!--<script type="text/javascript" src="js/inbox.js"></script>-->
        
 	  
 </body>
