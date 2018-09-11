@@ -2,25 +2,25 @@
 
   session_start();
 
-
+  $book_id = "";
   if(isset($_SESSION['uid'])){
     //print_r($_SESSION);
+    $book_id = $_GET['book_id'];
   }else{
     header("Location: index.php");
   }
 
-
   $accname = $_SESSION['gname'];
   $acctype = $_SESSION['type'];
-  $uid = $_SESSION['uid'];
+   $uid = $_SESSION['uid'];
   if($acctype==="admin"){
     //echo "Admin ANG NAKALOGIN";
     header("Location: admindashboard.php");
   }else if($acctype==="INSTRUCTOR"){
     //echo "Instructor ang naka login";
 
-    //header("Location: instructordashboard1.php");
-  }else if($acctype==="student"){
+    
+  }else if($acctype==="STUDENT"){
     header("Location: index.php");
   }
 
@@ -48,7 +48,7 @@
 
 </head>
 <body>
-    <div class="wrapper">
+	<div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
@@ -136,64 +136,7 @@
            
 
            <!---- PLACE YOUR DIVS HERE --->
-            <div class="container">
-                <div class="row">
-                    <h3 style="padding-left: 15px;">My On-Process Research</h3>
-                </div>
-                <br>
-                <div class="row">
-                    <table class="table">
-                        <thead>
-                          <tr>
-                            <td scope="col" style="border-bottom: 1px solid black; border-collapse: collapse; font-size: 15pt; font-weight: bold; ">Research Title</td>
-                            <td scope="col" style="border-bottom: 1px solid black; border-collapse: collapse; font-size: 15pt; font-weight: bold; ">Latest Status</td>
-                          </tr>
-                        </thead>
-                        <tbody >
-                            <?php
-                            
-                              include_once 'connection.php';
-                              $dbconfig = new dbconfig();
-                              $conn = $dbconfig->getCon();
-                              $query = "SELECT book.book_id, book.book_title FROM book INNER JOIN groupdoc on book.book_id = groupdoc.book_id WHERE groupdoc.accid = $uid and book.enabled='0'";
-                              $result = $conn->query($query);
-                              
-                              
-                              if($result->num_rows>0){
-                                while ($row=$result->fetch_assoc()) {
-                                  $str =  '<td scope="col">
-                                    <a href="paper-status.php?book_id='. $row['book_id'] .'" style="text-decoration: underline; font-size: 15pt;">
-                                            
-                                                <em>'. $row['book_title'] .'</em>
-                                    </a>
-                                </td>';
-
-                                  $strstat = '<td scope="col" style="font-weight: bold; font-size: 15pt;>Conceptualized</td>
-                                          </tr>';
-                                  $dbconfig = new dbconfig();
-                                  $conn = $dbconfig->getCon();
-                                  $query2 = "SELECT CONCAT('Step ' , paper_stat.id , ': ' , paper_stat.title) as 'stat' FROM paper_trail INNER JOIN paper_stat on paper_trail.p_sat_id = paper_stat.id WHERE paper_trail.book_id = " . $row['book_id'];
-                                  $result2 = $conn->query($query2);
-                                  while($rowstat = $result2->fetch_assoc()){
-                                    $strstat = '<td scope="col" style="font-size: 15pt;">'. $rowstat['stat'] .'</td></tr>';
-                                  }
-
-                                   $str .= $strstat;
-                                   echo $str;
-                                }
-                              }
-                              
-                            ?>
-                            
-                        </tbody>
-                    </table>
-                </div>
-                <hr>
-                <div class="row">
-                    <button type="submit" id= "instructor-btn-addnew" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModaladdNew"
-                style= "padding: 1% 2% 1% 2%; border-radius: 5%; font-weight: bold;" onclick="window.location.replace('add-new-on-process.php')"> ADD NEW </button>
-                </div>
-            </div>
+            
            
 
             
@@ -230,6 +173,6 @@
 
     <script src="js/searchdoc.js"></script>
        
-      
+	  
 </body>
 </html>

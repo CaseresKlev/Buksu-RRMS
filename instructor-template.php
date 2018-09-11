@@ -9,18 +9,16 @@
     header("Location: index.php");
   }
 
-
   $accname = $_SESSION['gname'];
   $acctype = $_SESSION['type'];
-  $uid = $_SESSION['uid'];
   if($acctype==="admin"){
     //echo "Admin ANG NAKALOGIN";
     header("Location: admindashboard.php");
   }else if($acctype==="INSTRUCTOR"){
     //echo "Instructor ang naka login";
 
-    //header("Location: instructordashboard1.php");
-  }else if($acctype==="student"){
+    
+  }else if($acctype==="STUDENT"){
     header("Location: index.php");
   }
 

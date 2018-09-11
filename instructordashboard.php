@@ -157,7 +157,7 @@
                           if($result->num_rows>0){
                             while ($row=$result->fetch_assoc()) {
                               echo '<div class="col-md-12">
-                            <a href="bookdetails.php?book_id=1" style="text-decoration: underline; font-weight: bold; font-size: 16pt">
+                            <a href="bookdetails.php?book_id='. $row['book_id'] .'" style="text-decoration: underline; font-weight: bold; font-size: 16pt">
                                 <ul>
                                     <li><em>ddhthrt</em></li>
                                 </ul>
@@ -175,6 +175,7 @@
                         
                     
                 </div>
+                
                 
                 
             </div>
