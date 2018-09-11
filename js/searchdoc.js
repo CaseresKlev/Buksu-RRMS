@@ -18,7 +18,10 @@ $("#btn-search").click(function(){
 
 })
 
-
+$("#viewall").click(function(){
+	//alert(this.name);
+	window.location.replace("view-stat.php?book_id="+ this.name);
+})
 $("button[id='btn[]").click(function(){
 	//alert("f");
 	//alert(this.index());
