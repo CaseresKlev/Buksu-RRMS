@@ -57,7 +57,7 @@
             </div>
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="admindashboard.php"class="dropdown-toggle">Research</a>
+                    <a href="admindashboard.php">Research</a>
                     <!--<ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
                             <a href="#">Home 1</a>
@@ -74,7 +74,7 @@
                     <a href="updateAcc.php">Update Account</a>
                 </li>
                 <li>
-                    <a href="accesscode.php" class="dropdown-toggle">Access Codes</a>
+                    <a href="accesscode.php" >Access Codes</a>
                     <!--<ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
                             <a href="#">Page 1</a>
