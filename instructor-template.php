@@ -9,17 +9,14 @@
     header("Location: index.php");
   }
 
-
   $accname = $_SESSION['gname'];
   $acctype = $_SESSION['type'];
-  $uid = $_SESSION['uid'];
   if($acctype==="admin"){
     //echo "Admin ANG NAKALOGIN";
-    header("Location: admindashboard.php");
   }else if($acctype==="INSTRUCTOR"){
     //echo "Instructor ang naka login";
 
-    //header("Location: instructordashboard1.php");
+    header("Location: instructordashboard.php");
   }else if($acctype==="student"){
     header("Location: index.php");
   }
@@ -139,45 +136,7 @@
            
 
            <!---- PLACE YOUR DIVS HERE --->
-            <div class="container">
-                <div class="row">
-                    <h3 style="padding-left: 15px">My Finished Research</h3>
-                </div>
-                <hr>
-                <div class="row">
-                    <!--<table style="font-size: 15px" width= "100%" class="table">-->
-
-                        <?php 
-                        
-                          include_once 'connection.php';
-                          $dbconfig = new dbconfig();
-                          $conn = $dbconfig->getCon();
-                          $query = "SELECT book.book_id, book.book_title FROM book INNER JOIN groupdoc on book.book_id = groupdoc.book_id WHERE groupdoc.accid = $uid and book.enabled=1";
-                          $result = $conn->query($query);
-                          if($result->num_rows>0){
-                            while ($row=$result->fetch_assoc()) {
-                              echo '<div class="col-md-12">
-                            <a href="bookdetails.php?book_id=1" style="text-decoration: underline; font-weight: bold; font-size: 16pt">
-                                <ul>
-                                    <li><em>ddhthrt</em></li>
-                                </ul>
-                            </a>  
-                        </div>';
-                            }
-                          }else{
-                            echo '<div class="col-md-12">
-                    <h4 style="padding-left: 15px; color: red; ">No Finished Research Yet.</h4>
-                </div>';
-                          }
-                          
-                        ?>
-
-                        
-                    
-                </div>
-                
-                
-            </div>
+            
            
 
             
