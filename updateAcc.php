@@ -1,6 +1,9 @@
 <?php
-	session_start();
-if(isset($_SESSION['uid'])){
+
+  session_start();
+
+
+  if(isset($_SESSION['uid'])){
     //print_r($_SESSION);
   }else{
     header("Location: index.php");
@@ -8,84 +11,145 @@ if(isset($_SESSION['uid'])){
 
   $accname = $_SESSION['gname'];
   $acctype = $_SESSION['type'];
-  //echo $acctype;
-?>
+  if($acctype==="admin"){
+    //echo "Admin ANG NAKALOGIN";
+  }else if($acctype==="INSTRUCTOR"){
+    //echo "Instructor ang naka login";
+
+    header("Location: instructordashboard.php");
+  }else if($acctype==="student"){
+    header("Location: index.php");
+  }
+
+
+  ?>
 
 
 <!DOCTYPE html>
-<html >
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title> Administrator </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--bootstrap-->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-min-4.1.0.css">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- scrollbar -->
+    <link rel="stylesheet" href="css/custom_scroll.css">
 
-    <!-- Custom Theme Style -->
-    <link rel="stylesheet" type="text/css" media="screen" href="css/custom.min.css">
+    <script defer src="js/solid.js"></script>
+    <script defer src="js/fontawesome.js"></script>
 
 </head>
-
-<header>
-
-</header>
-
-
-
-<body class="nav-md" style="background-color: gray">
-    <div class="container body">
-		<div class="main_container">
-			<div class="col-md-3 left_col">
-				<div class="left_col scroll-view">
-					<div class="navbar nav_title" style="border: 0;">
-						<a class="site_title"><span> Research Record Management System </span></a>
-					</div>
-					<div class="clearfix"></div>
-			<!-- menu profile quick info -->
-            <div class="profile clearfix">
-              <div class="profile_pic">
-                <img src="img/final.jpg" alt="..." class="img-circle profile_img">
-              </div>
-              <div class="profile_info">
-                <span> <?php echo strtoupper($accname) ?> </span>
-                <h2> <?php echo strtoupper($acctype) ?> </h2>
-              </div>
+<body>
+	<div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h4>Research Record Mangement System</h4>
             </div>
-            <!-- /menu profile quick info -->
+            <div class="sidebar-header">
+                <h5 style="color: #00004d;"><?php echo strtoupper($accname) ?></h5>
+                <h6><?php echo strtoupper($acctype) ?></h6>
+            </div>
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="admindashboard.php"class="dropdown-toggle">Research</a>
+                    <!--<ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="#">Home 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Home 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Home 3</a>
+                        </li>
+                    </ul>-->
+                </li>
+                <li>
+                    <a href="updateAcc.php">Update Account</a>
+                </li>
+                <li>
+                    <a href="accesscode.php" class="dropdown-toggle">Access Codes</a>
+                    <!--<ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="#">Page 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 3</a>
+                        </li>
+                    </ul>-->
+                </li>
+                <li>
+                    <a href="book_reports.php?title=&dept=&status=&author=&from=0&to=2018">Reports</a>
+                </li>
+                <li>
+                    <a href="dept.php">Department</a>
+                </li>
+            </ul>
 
-            <br />
+            <ul class="list-unstyled CTAs">
+                <li>
+                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
+                </li>
+                <li>
+                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
+                </li>
+            </ul>
+        </nav>
 
-            <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <div class="nav side-menu">
-					<ul><a href="admindashboard.php"> MY RESEARCH </span></a></ul>
-					<ul><a class= "dashboard-active" href="#update"> UPDATE ACCOUNT </a></ul>
-					<ul><a href="accesscode.php"> ACCESS CODE </a> </ul>
-                        <?php
-                            $d = Date('Y-m-d');
-                            $yr = explode("-", $d);
+        <!-- Page Content  -->
+        <div id="content">
 
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
 
-                            echo '<ul><a href="book_reports.php?title=&dept=&status=&author=&from=0&to=' . $yr[0] . '" target="_blank"> REPORTS </a> </ul>';
-                          ?>
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Toggle Menu</span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
 
-          <ul><a href="dept.php">DEPARTMENT </a> </ul> </br>
-					<ul><a href="index.php"> Back to Home </a> </ul>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="index.php">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="new-login.php">Logout</a>
+                            </li>
+                            <!--<li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>-->
+                        </ul>
+                    </div>
                 </div>
-              </div>
+            </nav>
+           
 
-            </div>
-          </div>
-        </div>
+           <!---- PLACE YOUR DIVS HERE --->
 
-        <!-- page content -->
-        <div class="right_col" role="main" style="min-height: 712px;">
-			<div id= "admin-frm-container" class="frm-container" style="margin: auto; width: 80%">
-				<center><h1> UPDATE ACCOUNT </h1></center>
-			<hr></br>
-			<form id= "admin-frm-updateAcc">
-				<table style="font-size: 15px">
+                <div class="container">
+                    <div class="row">
+                        <h4> UPDATE ACCOUNT</h4>
+                        </div>
+                        <div class="line"> </div>
+                    
+                    <div class="row">
+                        	<form id= "admin-frm-updateAcc">
+				<table>
 					<tr>
 						<td> Current Password :</td>
 						<td> <input type="password" placeholder="Enter Password" name="psw" id="oldpsw" required> </td>
@@ -114,36 +178,69 @@ if(isset($_SESSION['uid'])){
 						<td> Re-enter New Password :</td>
 						<td> <input type="password" placeholder="Re-enter New Password" name="ncpsw" id="ncpsw" required> </td>
 					</tr>
-				</table>
-			</form></br></br>
-			<hr>
-			<div id="result" style="text-align: center; color: red; font-weight: bold; display: none;">mnjhgfccvg</div>
-			<input type="text" id="gname" class="gname" style="display: none;" value="<?php echo $_SESSION['gname'];?>" />
-			<button type="submit" class="btn-update" id="btn-update"> UPDATE </button>
-		</div>
-          <!-- top tiles -->
-          <div class="row tile_count"></div>
-          <!-- /top tiles -->
-              </div>
+				    </table>
+                            </form>
+                    </br></br>
+                    </div>
+                   
             </div>
-          </div>
-        </div>
-        <!-- /page content -->
+                    <br/><br/>
+                    <div class="container">
+                      
+                        <div class="row">
+                            
+                        	<div id="result" style="text-align: center; color: red; font-weight: bold; display: none;">mnjhgfccvg</div>
+                        <input type="text" id="gname" class="gname" style="display: none;" value="<?php echo $_SESSION['gname'];?>" />
+                            
+			      
+                        
+                        </div>
+                        <div class="row">
+                               <button class="btn btn-primary" type="submit" id="btn-update"> UPDATE </button>
+                            
+                            </div>
+                        
+                        </div>
+            
+                
 
-      </div>
+
+            
+
+
+
+
+
+
+
+
+
+
+           <!---- AYAW NAG LAPAS DIRI --->
+        </div>
     </div>
 
-    <!-- jQuery -->
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="js/jquery-3.3.1.slim.min.js"></script>
+    <!-- Popper.JS -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap.min-4.1.0.js"></script>
 
-    <!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
 
-    <!-- Bootstrap -->
-    <!--<script src="js/bootstrap.min.js"></script>-->
+<!--    <script src="js/searchdoc.js"></script>-->
+ <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 
-    <!-- Custom Theme Scripts -->
-   <!-- <script src="js/custom.min.js"></script>-->
-    <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="js/updateAccount.js"></script>
-
-  </body>
+        <script type="text/javascript" src="js/updateAccount.js"></script>
+   
+       
+	  
+</body>
 </html>

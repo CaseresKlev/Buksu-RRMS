@@ -1,5 +1,6 @@
-$(".btn-update").click(function(){
-	//alert("h");
+
+$("#btn-update").click(function(){
+//	alert("h");
 
 	var opsw = $("#oldpsw").val();
 	var npsw = $("#npsw").val();
@@ -14,7 +15,9 @@ $(".btn-update").click(function(){
 		$("#result").html("Please fill all fields!");
 		$("#result").fadeOut(5000);
 	}else{
+      
 		if(ncpsw==npsw){
+            
 			document.getElementById('admin-frm-updateAcc').reset();
 			$.ajax({
 				url: 'valUpdateAccount.php',
@@ -27,7 +30,7 @@ $(".btn-update").click(function(){
 
         	},
         	success: function (data) {
-            //alert("Data Loaded:");
+          
            		$("#result").show();
             	$("#result").html(data);
 
@@ -35,6 +38,7 @@ $(".btn-update").click(function(){
 			});
 		}else{
 			$("#result").html("Password Didnt Match!");
+            $("#result").show();
 		}
 	}
 
