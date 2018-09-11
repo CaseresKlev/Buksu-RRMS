@@ -71,9 +71,7 @@
                         
                     </ul>
                 </li>
-                <li>
-                    <a href="updateAcc.php">My On-process Research</a>
-                </li>
+                
                 <li>
                     <a href="accesscode_instruct.php" class="dropdown-toggle">Access Codes</a>
                     <!--<ul class="collapse list-unstyled" id="pageSubmenu">
