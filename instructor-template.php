@@ -9,14 +9,17 @@
     header("Location: index.php");
   }
 
+
   $accname = $_SESSION['gname'];
   $acctype = $_SESSION['type'];
+  $uid = $_SESSION['uid'];
   if($acctype==="admin"){
     //echo "Admin ANG NAKALOGIN";
+    header("Location: admindashboard.php");
   }else if($acctype==="INSTRUCTOR"){
     //echo "Instructor ang naka login";
 
-    header("Location: instructordashboard.php");
+    //header("Location: instructordashboard1.php");
   }else if($acctype==="student"){
     header("Location: index.php");
   }
@@ -67,9 +70,6 @@
                         </li>
                         
                     </ul>
-                </li>
-                <li>
-                    <a href="updateAcc.php">My On-process Research</a>
                 </li>
                 <li>
                     <a href="accesscode_instruct.php" class="dropdown-toggle">Access Codes</a>
