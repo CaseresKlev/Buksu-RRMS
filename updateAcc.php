@@ -93,7 +93,7 @@
                     </ul>-->
                 </li>
                 <li>
-                    <a href="book_reports.php?title=&dept=&status=&author=&from=0&to=2018">Reports</a>
+                    <a href="book_reports.php?title=&dept=&status=&author=&from=0&to=2018" target="_blank">Reports</a>
                 </li>
                 <li>
                     <a href="dept.php">Department</a>

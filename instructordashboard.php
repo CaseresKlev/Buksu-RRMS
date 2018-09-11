@@ -61,7 +61,7 @@
                   <h6><?php echo strtoupper($acctype) ?></h6>
                 </span>
             </div>
-            <ul class="list-unstyled components">
+            <ul class="list-unstyled components" style="margin-left: 10%">
                 <li class="active">
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Research
                       <i class="fas fa-circle fa-xs" style="color:red"></i>
@@ -92,7 +92,7 @@
                     </ul>-->
                 </li>
                 <li>
-                    <a href="book_reports.php?title=&dept=&status=&author=&from=0&to=2018">Reports</a>
+                    <a href="book_reports.php?title=&dept=&status=&author=&from=0&to=2018" target="_blank">Reports</a>
                 </li>
 
             </ul>
