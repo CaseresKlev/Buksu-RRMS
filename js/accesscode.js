@@ -1,5 +1,5 @@
 $("#admin-btn-generate").click(function(){
-  alert("g");
+  //alert("g");
 		var count = $("#access-count").val();
 		var type = "INSTRUCTOR";
 		//alert(count); 
@@ -21,10 +21,10 @@ $("#admin-btn-generate").click(function(){
                {
                   //$("#prog").attr('value',percentCompelete); 
                    //$("#percent").html(percentCompelete+'%');
-                   alert(e);
+                   //alert(e);
                },
     		success: function(data){
-          alert(data);
+          //alert(data);
     			location.reload(true);
     			
     		}

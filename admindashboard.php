@@ -47,7 +47,7 @@
 <body>
 	<div class="wrapper">
         <!-- Sidebar  -->
-        <nav id="sidebar">
+        <nav id="sidebar" style="position: -webkit-sticky; position: sticky; top: 0">
             <div class="sidebar-header">
                 <h4>Research Record Mangement System</h4>
             </div>

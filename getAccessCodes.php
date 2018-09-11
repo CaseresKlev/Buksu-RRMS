@@ -17,7 +17,7 @@ session_start();
 	include_once 'connection.php';
 	$dbconfig = new dbconfig();
 	$conn = $dbconfig->getCon();
-
+	$accesskey = array();
 
 	for($i=1; $i<=$count; $i++){
 
@@ -32,6 +32,7 @@ session_start();
 		//echo $result;
 		if($result){
 			array_push($accesskey, $key);
+			//array_push(array, var)
 
 		}
 		
@@ -39,7 +40,7 @@ session_start();
 
 	//print_r($accesskey);
 	foreach ($accesskey as $key) {
-		echo $key . "-";
+		//echo $key . "-";
 	}
 
 
