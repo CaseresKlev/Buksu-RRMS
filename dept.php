@@ -36,9 +36,9 @@
     <!--bootstrap-->
     <link rel="stylesheet" type="text/css" href="css/bootstrap-min-4.1.0.css">
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <!-- scrollbar -->
-    <link rel="stylesheet" href="css/custom_scroll.css">
+    <link rel="stylesheet" type="text/css" href="css/custom_scroll.css">
 
     <script defer src="js/solid.js"></script>
     <script defer src="js/fontawesome.js"></script>
@@ -52,12 +52,17 @@
                 <h4>Research Record Mangement System</h4>
             </div>
             <div class="sidebar-header">
-                <h5 style="color: #00004d;"><?php echo strtoupper($accname) ?></h5>
-                <h6><?php echo strtoupper($acctype) ?></h6>
+              <i class="fas fa-user-circle fa-3x"></i>
+                <span style="position: absolute; margin-left: 10px">
+                  <h5 style="color: #BDB5B5;"><?php echo strtoupper($accname) ?></h5>
+                  <h6><?php echo strtoupper($acctype) ?></h6>
+                </span>
             </div>
-            <ul class="list-unstyled components">
-                <li class="active">
-                    <a href="admindashboard.php"class="dropdown-toggle">Research</a>
+            <ul class="list-unstyled components" style="margin-left: 10%">
+                <li>
+                    <a href="admindashboard.php"class="dropdown-toggle">Research
+                      <i class="fas fa-circle fa-xs" style="color:red"></i>
+                    </a>
                     <!--<ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
                             <a href="#">Home 1</a>
@@ -90,17 +95,8 @@
                 <li>
                     <a href="book_reports.php?title=&dept=&status=&author=&from=0&to=2018">Reports</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="dept.php">Department</a>
-                </li>
-            </ul>
-
-            <ul class="list-unstyled CTAs">
-                <li>
-                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
-                </li>
-                <li>
-                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
                 </li>
             </ul>
         </nav>
@@ -121,10 +117,17 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item active">
+                            <li class="nav-item hover">
                                 <a class="nav-link" href="index.php">Home</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item hover">
+                                <a class="nav-link" href="inbox.php">
+                                    <i class="fas fa-envelope fa-lg"> </i>
+                                    Inbox
+                                    <i class="fas fa-circle fa-xs" style="color:red"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item hover">
                                 <a class="nav-link" href="new-login.php">Logout</a>
                             </li>
                             <!--<li class="nav-item">
@@ -137,7 +140,7 @@
                     </div>
                 </div>
             </nav>
-           
+
 
            <!---- PLACE YOUR DIVS HERE --->
             <!-- script               -->
@@ -148,7 +151,7 @@
                 input.value= input.value.replace(regex,"");
               }
               </script>
-            
+
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12">
@@ -157,7 +160,7 @@
                               <fieldset>
                                   <legend>ADD DEPARTMENT</legend>
                                   <input style="text-transform:capitalize"type="text"name="department" id="department"onkeyup="lettersonly(this)" placeholder="Department" required/><br><br>
-                                  
+
                                   <input style="text-transform:capitalize"type="text"name="college" id="college" onkeyup="lettersonly(this)" placeholder="College"/ required>
                                   <br><br>
                                   <button class="btn btn-primary" type="button" id="submit1" >ADD</button>
@@ -166,11 +169,11 @@
                             </form>
                             </div>
                     </div>
-                                
+
             </div>
             <div class="line"></div>
             <div class="container">
-               
+
                      <fieldset>
 
           <!-- delete department if needed -->
@@ -243,7 +246,7 @@
 <!--      <script src="js/jquery.min.js"></script>-->
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
     <script src="js/searchdoc.js"></script>
-       
-	  
+
+
 </body>
 </html>

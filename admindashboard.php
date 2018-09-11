@@ -52,12 +52,18 @@
                 <h4>Research Record Mangement System</h4>
             </div>
             <div class="sidebar-header">
-                <h5 style="color: #00004d;"><?php echo strtoupper($accname) ?></h5>
-                <h6><?php echo strtoupper($acctype) ?></h6>
+                <i class="fas fa-user-circle fa-3x"></i>
+                <span style="position: absolute; margin-left: 10px">
+                  <h5 style="color: #BDB5B5"><?php echo strtoupper($accname) ?></h5>
+                  <h6> <?php echo strtoupper($acctype) ?></h6>
+                </span>
             </div>
-            <ul class="list-unstyled components">
+            <ul class="list-unstyled components" style="margin-left: 10%">
                 <li class="active">
-                    <a href="admindashboard.php">Research</a>
+                    <a href="admindashboard.php">Research
+                      <i class="fas fa-circle fa-xs" style="color:red"></i>
+                    </a>
+
                     <!--<ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
                             <a href="#">Home 1</a>
@@ -95,14 +101,6 @@
                 </li>
             </ul>
 
-            <ul class="list-unstyled CTAs">
-                <li>
-                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
-                </li>
-                <li>
-                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
-                </li>
-            </ul>
         </nav>
 
         <!-- Page Content  -->
@@ -124,6 +122,13 @@
                             <li class="nav-item active">
                                 <a class="nav-link" href="index.php">Home</a>
                             </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="inbox.php">
+                                    <i class="fas fa-envelope fa-lg"> </i>
+                                    Inbox
+                                    <i class="fas fa-circle fa-xs" style="color:red"></i>
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="new-login.php">Logout</a>
                             </li>
@@ -137,7 +142,7 @@
                     </div>
                 </div>
             </nav>
-           
+
 
            <!---- PLACE YOUR DIVS HERE --->
 
@@ -176,18 +181,18 @@
                     <td scope="col" style="font-weight: bold; font-size: 15pt">Author</td>
                     <td scope="col" style="font-weight: bold; font-size: 15pt">Research Type</td>
                   </tr>
-                  
+
                 </thead>
                 <tbody>
                 <?php
                   $key = "";
-                 
+
 
 
                   if(isset($_GET['search'])){
                     $key =  $_GET['search'];
                   }
-                      
+
 
 
                       include_once 'connection.php';
@@ -202,7 +207,7 @@
                     <td scope="col" style="width: 50%"><a href="view-stat.php?book_id='. $row['book_id'] .'">'. $row['book_title'] .'</a></td>';
 
                       //for author
-                      
+
                                   $query = "SELECT author.a_id, CONCAT(author.a_lname, ', ' , SUBSTRING(author.a_fname, 1, 1), ';') as 'author' FROM author INNER JOIN junc_authorbook on junc_authorbook.aut_id = author.a_id WHERE junc_authorbook.book_id=" . $row['book_id'];
                                   $result2 = $conn->query($query);
                                   if($result2->num_rows>0){
@@ -231,9 +236,9 @@
                                     <td scope="col" style="width: 25%"Student Research</td>
                               </tr>';
                                       }
-                                      
+
                                     }
-                                    
+
 
                                   }
 
@@ -241,21 +246,21 @@
                             echo $str;
                         }
                       }else{
-                        
+
                         echo '<tr><td scope="col" style="width: 100%" colspan="3" ><center style="color:red; font-size: 18pt">No result Found</center></td></tr>';
                       }
 
-                  
-                      
+
+
                 ?>
-                  
+
                 </tbody>
-                
+
               </table>
            </div>
 
 
-           
+
 
 
 
@@ -286,7 +291,7 @@
     </script>
 
     <script src="js/searchdoc.js"></script>
-       
-	  
+
+
 </body>
 </html>
