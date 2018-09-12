@@ -22,7 +22,7 @@
   }else if($acctype==="INSTRUCTOR"){
     //echo "Instructor ang naka login";
 
-    
+
   }else if($acctype==="STUDENT"){
     header("Location: index.php");
   }
@@ -61,47 +61,86 @@
                 <h5 style="color: #00004d;"><?php echo strtoupper($accname) ?></h5>
                 <h6><?php echo strtoupper($acctype) ?></h6>
             </div>
-            <ul class="list-unstyled components">
-                <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Research</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="instructordashboard.php">Finished Reserch</a>
-                        </li>
-                        <li>
-                            <a href="instructor-on-process-paper.php">On-Process Research</a>
-                        </li>
-                        
-                    </ul>
-                </li>
-                <li>
-                    <a href="accesscode_instruct.php" class="dropdown-toggle">Access Codes</a>
-                    <!--<ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="#">Page 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 3</a>
-                        </li>
-                    </ul>-->
-                </li>
-                <li>
-                    <a href="book_reports.php?title=&dept=&status=&author=&from=0&to=2018">Reports</a>
-                </li>
-                
-            </ul>
+            <?php
+              if ($acctype==="INSTRUCTOR") {
+                echo '<ul class="list-unstyled components">
+                    <li class="active">
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Research</a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li>
+                                <a href="instructordashboard.php">Finished Reserch</a>
+                            </li>
+                            <li>
+                                <a href="instructor-on-process-paper.php">On-Process Research</a>
+                            </li>
 
-            <!--<ul class="list-unstyled CTAs">
-                <li>
-                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
-                </li>
-                <li>
-                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
-                </li>
-            </ul>-->
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="accesscode_instruct.php" class="dropdown-toggle">Access Codes</a>
+                        <!--<ul class="collapse list-unstyled" id="pageSubmenu">
+                            <li>
+                                <a href="#">Page 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Page 2</a>
+                            </li>
+                            <li>
+                                <a href="#">Page 3</a>
+                            </li>
+                        </ul>-->
+                    </li>
+                    <li>
+                        <a href="book_reports.php?title=&dept=&status=&author=&from=0&to=2018">Reports</a>
+                    </li>
+
+                </ul>';
+              } else {
+                echo '<ul class="list-unstyled components" style="margin-left: 10%">
+                    <li class="active">
+                        <a href="admindashboard.php">Research
+                          <i class="fas fa-circle fa-xs" style="color:red"></i>
+                        </a>
+
+                        <!--<ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li>
+                                <a href="#">Home 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Home 2</a>
+                            </li>
+                            <li>
+                                <a href="#">Home 3</a>
+                            </li>
+                        </ul>-->
+                    </li>
+                    <li>
+                        <a href="updateAcc.php">Update Account</a>
+                    </li>
+                    <li>
+                        <a href="accesscode.php" >Access Codes</a>
+                        <!--<ul class="collapse list-unstyled" id="pageSubmenu">
+                            <li>
+                                <a href="#">Page 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Page 2</a>
+                            </li>
+                            <li>
+                                <a href="#">Page 3</a>
+                            </li>
+                        </ul>-->
+                    </li>
+                    <li>
+                        <a href="book_reports.php?title=&dept=&status=&author=&from=0&to=2018" target="_blank">Reports</a>
+                    </li>
+                    <li>
+                        <a href="dept.php">Department</a>
+                    </li>
+                </ul>'
+              }
+
+
         </nav>
 
         <!-- Page Content  -->
@@ -136,7 +175,7 @@
                     </div>
                 </div>
             </nav>
-           
+
 
            <!---- PLACE YOUR DIVS HERE --->
         <div class="container">
@@ -169,13 +208,13 @@
                                    }
                                 }
                             }
-                        ?>         
-                            
-                            
+                        ?>
+
+
                         </select>
                    </div>
                    <div class="col-md-2" style="padding-top: 32px;">
-                        
+
                        <button class="btn btn-primary" id="contact-selected" style="float: left;">Select</button>
                    </div>
                    <div class="col-md-4">
@@ -183,17 +222,17 @@
                        <input type="text" placeholder="journal name" id="contact-search" name="contac-search" class="form-control">
                    </div>
                    <div class="col-md-2" style="padding-top: 32px;">
-                        
+
                        <button class="btn btn-primary" style="float: left;" id="btn-search-contact">Search</button>
                    </div>
-                   
+
                </div>
            </div>
            <br>
            <br>
 
            <div class="container" id="msg-msg-list">
-            <?php 
+            <?php
                 include_once 'connection.php';
                 $dbocnfig = new dbconfig();
                 $con = $dbocnfig->getCon();
@@ -209,7 +248,7 @@
                             if(!in_array($row['sender'], $inboxlist)){
                                 array_push($inboxlist, $row['sender']);
                             }
-                            
+
                         }
                         if($row['receiver']!==$uid){
                             //echo $row['receiver'] . "!";
@@ -222,11 +261,11 @@
 
                         /*if($row['id']!==$uid){
                             echo '<div class="col-md-12" id="msg-block[]" name="'. $row['id'] .'-'. $row['sender'] .'" style="background-color: #1affa3">
-                    
+
                     <a href="#" name="'. $row['id'] .'">
                     <i class="fas fa-envelope fa-lg" id="msg-list" style="float: left;"></i>
                     <h5 style="padding-left: 30px;"> '. $row['sender'] .' </h5>
-                    </a> 
+                    </a>
                 </div>';*/
                         }
                         $dbocnfig = new dbconfig();
@@ -243,7 +282,7 @@
                             }else{
                                 $strr .= " or id = " . $key;
                             }
-                            
+
                         }
 
                         $query .= $strr;
@@ -253,22 +292,22 @@
                         if($result->num_rows>0){
                             while ($row=$result->fetch_assoc()) {
                                 echo '<div class="col-md-12" id="msg-block[]" name="'. $row['id'] .'-'. $row['g_name'] .'" style="background-color: #1affa3">
-                    
+
                     <a href="#" name="'. $row['id'] .'">
                     <i class="fas fa-envelope fa-lg" id="msg-list" style="float: left;"></i>
                     <h5 style="padding-left: 30px;"> '. $row['g_name'] .' </h5>
-                    </a> 
+                    </a>
                 </div>';
                             }
                         }
 
 
                     }
-                
+
 
             ?>
-               
-               
+
+
            </div>
            <br>
            <h4 style="display: none; padding-left: 15px;" id="txt-selcted-contact">Reading Conversation with <em id="talking-to" style="font-weight: bold;"></em></h4>
@@ -293,10 +332,10 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
-               
-   
+
+
 </div>
 
 
@@ -329,14 +368,14 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <br>
 
 
                     -->
-                
-                
-                
+
+
+
             </div>
             <br>
             <div class="container" id="chat-input" style="display: none; padding-left: 30px;">
@@ -347,13 +386,13 @@
                     <div class="col-md-2">
                         <button class="btn btn-success btn-md" id="btn-send-msg">Send</button>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
             <br>
             <br>
-                
+
            <!---- AYAW NAG LAPAS DIRI --->
         </div>
     </div>
@@ -380,12 +419,12 @@
     <!--<script type="text/javascript" src="js/inbox.js"></script>-->
        <script type="text/javascript">
            $(document).ready(function(){
-    
+
 });
        </script>
 
 
 
-	  
+
 </body>
 </html>

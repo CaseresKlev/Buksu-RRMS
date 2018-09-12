@@ -52,82 +52,84 @@
             <div class="sidebar-header">
                 <h4>Research Record Mangement System</h4>
             </div>
-            <div class="sidebar-header">
-              <i class="fas fa-user-circle fa-3x"></i>
-                <span style="position: absolute; margin-left: 10px">
-                  <h5 style="color: #BDB5B5;"><?php echo strtoupper($accname) ?></h5>
-                  <h6><?php echo strtoupper($acctype) ?></h6>
-                </span>
-            </div>
-            <ul class="list-unstyled components">
-                <?php
-                    if($acctype==="admin"){
-                        echo '<li class="active">
-                    <a href="admindashboard.php"class="dropdown-toggle">Research</a>
-                    <!--<ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="#">Home 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 3</a>
-                        </li>
-                    </ul>-->
-                </li>';
-                    }else{
-                        echo '<li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Research
-                      <i class="fas fa-circle fa-xs" style="color:red"></i>
-                    </a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="instructordashboard.php">Finished Reserch</a>
-                        </li>
-                        <li>
-                            <a href="instructor-on-process-paper.php">On-Process Research</a>
-                        </li>
+            <?php
+              if ($acctype==="INSTRUCTOR") {
+                echo '<ul class="list-unstyled components">
+                    <li class="active">
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Research</a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li>
+                                <a href="instructordashboard.php">Finished Reserch</a>
+                            </li>
+                            <li>
+                                <a href="instructor-on-process-paper.php">On-Process Research</a>
+                            </li>
 
-                    </ul>
-                </li>';
-                    }
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="accesscode_instruct.php" class="dropdown-toggle">Access Codes</a>
+                        <!--<ul class="collapse list-unstyled" id="pageSubmenu">
+                            <li>
+                                <a href="#">Page 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Page 2</a>
+                            </li>
+                            <li>
+                                <a href="#">Page 3</a>
+                            </li>
+                        </ul>-->
+                    </li>
+                    <li>
+                        <a href="book_reports.php?title=&dept=&status=&author=&from=0&to=2018">Reports</a>
+                    </li>
 
-                ?>
+                </ul>';
+              } else {
+                echo '<ul class="list-unstyled components" style="margin-left: 10%">
+                    <li class="active">
+                        <a href="admindashboard.php">Research
+                          <i class="fas fa-circle fa-xs" style="color:red"></i>
+                        </a>
 
-                <li>
-                    <a href="updateAcc.php">Update Account</a>
-                </li>
-                <li>
-                    <a href="accesscode.php" class="dropdown-toggle">Access Codes</a>
-                    <!--<ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="#">Page 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 3</a>
-                        </li>
-                    </ul>-->
-                </li>
-                <li>
-                    <a href="book_reports.php?title=&dept=&status=&author=&from=0&to=2018" target="_blank">Reports</a>
-                </li>
-                <li>
-                    <a href="dept.php">Department</a>
-                </li>
-            </ul>
-
-            <!--<ul class="list-unstyled CTAs">
-                <li>
-                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
-                </li>
-                <li>
-                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
-                </li>
-            </ul>-->
+                        <!--<ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li>
+                                <a href="#">Home 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Home 2</a>
+                            </li>
+                            <li>
+                                <a href="#">Home 3</a>
+                            </li>
+                        </ul>-->
+                    </li>
+                    <li>
+                        <a href="updateAcc.php">Update Account</a>
+                    </li>
+                    <li>
+                        <a href="accesscode.php" >Access Codes</a>
+                        <!--<ul class="collapse list-unstyled" id="pageSubmenu">
+                            <li>
+                                <a href="#">Page 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Page 2</a>
+                            </li>
+                            <li>
+                                <a href="#">Page 3</a>
+                            </li>
+                        </ul>-->
+                    </li>
+                    <li>
+                        <a href="book_reports.php?title=&dept=&status=&author=&from=0&to=2018" target="_blank">Reports</a>
+                    </li>
+                    <li>
+                        <a href="dept.php">Department</a>
+                    </li>
+                </ul>'
+              }
         </nav>
 
         <!-- Page Content  -->

@@ -1,3 +1,31 @@
+
+<?php
+
+if(isset($_GET['paper_trail'])){
+  $trail_id = $_GET['paper_trail'];
+  $origin = "";
+
+
+  include_once 'connection.php';
+  $dbconfig = new dbconfig();
+  $conn = $dbconfig->getCon();
+  $query = "SELECT comments.parts, comments.comments, comments.origin, comments.page from comments INNER JOIN paper_trail on paper_trail.id = comments.trail_id where paper_trail.id = 36";
+  $result = $conn->query($query);
+  if($result->num_rows>0){
+    while ($row=$result->fetch_assoc()) {
+      $origin = $row['origin'];
+      //echo $origin;
+    }
+  }
+
+
+}
+//echo $origin;
+?>
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -148,26 +176,34 @@
         </div>
         <div class="row">
           <table width="100%" id="tablefirst" class="table" style="border:1px solid black;">
+                <?php
+                  if($result->num_rows>0){
+                  while ($row=$result->fetch_assoc()) {
+                    $origin = $row['origin'];
+                    //echo $origin;
+                  }
+                }
 
+                ?>
                 <tr>
                     <td scope="col" style="height: 60px; border:1px solid black;">
-                      <i class="fas fa-square-full" style="color:#3399ff;"></i>
+                      <i class="fas fa-square-full" style="color:<?php if($origin==="Research Committee"){ echo "#3399ff"; }else{ echo "white"; }  ?>;"></i>
                       Research Committee
                     </td>
                     <td scope="col" style="height: 60px; border:1px solid black;">
-                      <i class="fas fa-square-full" style="color:#3399ff;"></i>
+                      <i class="fas fa-square-full" style="color:<?php if($origin==="Internal Reviewers"){ echo "#3399ff"; }else{ echo "white"; }  ?>;"></i>
                       Internal Reviewers
                     </td>
                     <td scope="col" style="height: 60px; border:1px solid black;">
-                      <i class="fas fa-square-full" style="color:#3399ff;"></i>
+                      <i class="fas fa-square-full" style="color:<?php if($origin==="Panel of Experts"){ echo "#3399ff"; }else{ echo "white"; }  ?>;"></i>
                       Panel of Experts
                     </td>
                     <td scope="col" style="height: 60px; border:1px solid black;">
-                      <i class="fas fa-square-full" style="color:#3399ff;"></i>
+                      <i class="fas fa-square-full" style="color:<?php if($origin==="External Reviewers"){ echo "#3399ff"; }else{ echo "white"; }  ?>;"></i>
                       External Reviewers
                     </td>
                     <td scope="col" style="height: 60px; border:1px solid black;">
-                      <i class="fas fa-square-full" style="color:#3399ff;"></i>
+                      <i class="fas fa-square-full" style="color:<?php if($origin==="Research Ethics Commit"){ echo "#3399ff"; }else{ echo "white"; }  ?>;"></i>
                       Research Ethics Committee
                     </td>
                 </tr>
