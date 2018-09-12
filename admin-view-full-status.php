@@ -51,13 +51,13 @@
   $query = "SELECT paper_trail.p_sat_id, paper_trail.file_loc, paper_trail.requirements, paper_trail.isdone, paper_stat.hasrequired FROM paper_trail INNER JOIN paper_stat on paper_trail.p_sat_id = paper_stat.id WHERE paper_trail.id = $trail_id";
   $fileLoc = "";
   $required = "";
- 
+
    $result = $conn ->query($query);
    if($result->num_rows>0){
       $row0 = $result->fetch_assoc();
       $fileLoc = $row0['file_loc'];
       $required = $row0['hasrequired'];
-      
+
    }
 
    $str = explode("/", $fileLoc);
@@ -93,12 +93,17 @@
                 <h4>Research Record Mangement System</h4>
             </div>
             <div class="sidebar-header">
-                <h5 style="color: #00004d;"><?php echo strtoupper($accname) ?></h5>
-                <h6><?php echo strtoupper($acctype) ?></h6>
+                <i class="fas fa-user-circle fa-3x"></i>
+                <span style="position: absolute; margin-left: 10px">
+                  <h5 style="color: #BDB5B5"><?php echo strtoupper($accname) ?></h5>
+                  <h6> <?php echo strtoupper($acctype) ?></h6>
+                </span>
             </div>
-            <ul class="list-unstyled components">
+            <ul class="list-unstyled components" style="margin-left: 10%">
                 <li class="active">
-                    <a href="admindashboard.php"class="dropdown-toggle">Research</a>
+                  <a href="admindashboard.php"class="dropdown-toggle">Research
+                    <i class="fas fa-circle fa-xs" style="color:red"></i>
+                  </a>
                     <!--<ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
                             <a href="#">Home 1</a>
@@ -129,7 +134,7 @@
                     </ul>-->
                 </li>
                 <li>
-                    <a href="book_reports.php?title=&dept=&status=&author=&from=0&to=2018">Reports</a>
+                    <a href="book_reports.php?title=&dept=&status=&author=&from=0&to=2018" target="_blank">Reports</a>
                 </li>
                 <li>
                     <a href="dept.php">Department</a>
@@ -149,40 +154,47 @@
         <!-- Page Content  -->
         <div id="content">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg" style="background: #CDCDD8">
                 <div class="container-fluid">
-                    
+
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
                         <i class="fas fa-align-left"></i>
                         <span>Toggle Menu</span>
                     </button>
-                    
-                    
-                    
-                    
+
+
+
+
                     <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="index.php">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="new-login.php">Logout</a>
-                            </li>
-                            <!--<li class="nav-item">
-                                <a class="nav-link" href="#">Page</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Page</a>
-                            </li>-->
-                        </ul>
+                      <ul class="nav navbar-nav ml-auto">
+                          <li class="nav-item active">
+                              <a class="nav-link" href="index.php">Home</a>
+                          </li>
+                          <li class="nav-item active">
+                              <a class="nav-link" href="inbox.php">
+                                  <i class="fas fa-envelope fa-lg"> </i>
+                                  Inbox
+                                  <i class="fas fa-circle fa-xs" style="color:red"></i>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="new-login.php">Logout</a>
+                          </li>
+                          <!--<li class="nav-item">
+                              <a class="nav-link" href="#">Page</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#">Page</a>
+                          </li>-->
+                      </ul>
                     </div>
                 </div>
             </nav>
-           
+
 
            <!---- PLACE YOUR DIVS HERE --->
 
@@ -209,7 +221,7 @@
                 $book_id = $row['book_id'];
                 //$origin = $row['origin'];
               }
-              
+
             ?>
 
             <div class="container">
@@ -226,15 +238,15 @@
                             echo'<div class="col-md-12" ><b style="color: gray"> '. $row['author'] .' </b></div>';
                         }
                        ?>
-                    
+
                 </div>
-                
-                
+
+
                 <br>
                 <br>
                 <div class="row">
-                    
-                        <?php 
+
+                        <?php
                     //$date =  date('l d F Y');
                     $long = strtotime($date);
                     $date = date('F d, Y', $long);
@@ -253,8 +265,8 @@
                             <span>View all status</span>
                         </button>
                     </div>
-                     
-                    
+
+
                 </div>
                 <hr>
                 <div class="row">
@@ -282,7 +294,7 @@
                               <div class="col-md-12">
                                 <em style="color: red">Author not yet uploaded a revision copy of this research.</em>
                               </div>
-                              
+
                             </div>
                           </div><br><br>';
                         }else{
@@ -296,16 +308,16 @@
                                   <thead>
                                     <tr">
                                       <td scope="col" style="width: 100%">Revision 1: <a href="'. $fileLoc .'"><em>'. $str[1] .'</em></a></td>
-                                      
+
                                     </tr>
                                   </thead>
                                 </table>
                               </div>
-                              
+
                             </div>
                           </div><br><br>';
                         }
-                               
+
                           }elseif ($required==="pub") {
                             $con= $dbconfig -> getCon();
                             $query= "SELECT published.id, published.history, book.book_title, published.issn, published.journal, published.type, published.date FROM published INNER JOIN book ON book.book_id = published.book_id WHERE published.book_id = $book_id";
@@ -323,7 +335,7 @@
                               echo '<p id="status" style="display: none;">Published</p>';
                               echo '<p id="book_id" style="display: none;">' . $book_id . '</p>';
                               echo '<p id="trail_id" style="display: none;">' . $trail_id   . '</p>';
-                              
+
                               echo '<div class="container">
                             <div class="row">
                               <div class="col-md-6" style="font-size: 18pt; font-weight: bold;">
@@ -338,7 +350,7 @@
                                 <table class="table">
                                   <thead style="font-size: 14pt; font-weight: bold">
                                     <tr">
-                                      
+
                                       <td scope="col">ISSN</td>
                                       <td scope="col">Journal</td>
                                       <td scope="col">Journal Type</td>
@@ -348,7 +360,7 @@
                                   </thead><tbody>';
                               while($rowpub =$result->fetch_assoc()){
                                 echo '<tr>
-                                      
+
                                       <td scope="col" id="issn-'. $counter .'">'. $rowpub['issn'] .'</td>
                                       <td scope="col" id="journal-'. $counter .'">'. $rowpub['journal'] .'</td>
                                       <td scope="col" id="type-'. $counter .'">'. $rowpub['type'] .'</td>
@@ -360,7 +372,7 @@
                               }
                               echo '</tbody></table>
                               </div>
-                              
+
                             </div>
                           </div>
                       <br>';
@@ -383,12 +395,12 @@
                               <div class="col-md-12" style="width: 100%; height: 2px; background-color: blue;"></div>
                                 <br>
                                 <div class="col-md-12"><em style="color: red;">Please click the \'Add new Publication\' button to provide Publication information.</em></div>
-                  
+
                             </div>
-                            
+
                           </div><br>';
                             }
-                            
+
                           }elseif ($required==="dis"){
                             echo '<p id="status" style="display:none">Disseminated / Presented</p>';
                             //echo "string";
@@ -437,7 +449,7 @@
                                   $counter++;
                                   echo '</tbody></table>
                               </div>
-                              
+
                             </div>
                           </div>
                       <br>';
@@ -457,18 +469,18 @@
                               <div class="col-md-12" style="width: 100%; height: 2px; background-color: blue;"></div>
                                 <br>
                                 <div class="col-md-12"><em style="color: red;">Please click the \'Add new Dissemination\' button to provide dissemination information.</em></div>
-                  
+
                             </div>
-                            
+
                           </div><br>';
                           }
-                          
-                         
+
+
 
 
 
                         }elseif($required==="util"){
-                          
+
                           $con= $dbconfig -> getCon();
                           $query= "SELECT book.book_title, `id`,`orgname`, `orgaddress`, `date`, `history` FROM `utilize` INNER JOIN book on book.book_id = utilize.book_id WHERE utilize.book_id = $book_id";
                           $result2 = $con -> query($query);
@@ -510,13 +522,13 @@
                                     </tr>';
                                     $counter++;
                                   }
-                                  
+
                                   echo '</tbody></table>
                               </div>
-                              
+
                             </div>
-                          
-                      
+
+
                       ';
 
 
@@ -535,15 +547,15 @@
                               <div class="col-md-12" style="width: 100%; height: 2px; background-color: blue;"></div>
                                 <br>
                                 <div class="col-md-12"><em style="color: red;">Please click the \'Add new Utilization\' button to provide utilization information.</em></div>
-                  
+
                             </div>
-                            
+
                           </div><br>';
                           }
 
-                          
-                          
-                          
+
+
+
                         }elseif ($required==="awards") {
                           $con= $dbconfig -> getCon();
                           $query= "SELECT awards.id, book.book_title, awards.awards, awards.parties, awards.location, awards.description, awards.date FROM `awards` inner JOIN book on book.book_id = awards.book_id WHERE awards.book_id = $book_id";
@@ -589,12 +601,12 @@
                                     </tr>';
                                     $counter++;
                                   }
-                                  
+
                                   echo '</tbody></table>
                               </div>
-                              
+
                             </div>
-                          
+
                       <br>';
 
 
@@ -604,7 +616,7 @@
                               $result2 = $con -> query($query);
                             echo '<div class="row" style="padding-left: 15px;">
                               <div class="col-md-10" style="font-size: 18pt; font-weight: bold;">
-                                Paper Awards 
+                                Paper Awards
                               </div>
                               <div class="col-md-2"><button class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#modalawards" id="btn-awards-addnew">Add new Awards</button></div>
                               <br>
@@ -621,15 +633,15 @@
                         }
 
                       ?>
-                      
-                            
-                            
-                            
-                          
-               
-                
+
+
+
+
+
+
+
             </div>
-            
+
             <br>
             <br>
             <div class="container">
@@ -649,26 +661,29 @@
               <br>
               <div class="row">
                   <table class="table" style="border: 1px solid black; border-collapse: collapse;">
-                    
+
                     <tbody>
                       <?php
+                      $haveprint = 0;
+
                       $dbconfig= new dbconfig();
                       $con= $dbconfig -> getCon();
                       $query= "SELECT * FROM `comments` WHERE `trail_id` = $trail_id";
                       $result = $con -> query($query);
                       if($result->num_rows>0){
+                        $haveprint = 1;
                         echo '<thead>
                       <tr>
                         <td scope="col" style="width: 30%; border: 1px solid black; border-collapse: collapse;" ><b>Parts of Manuscript</b></td>
                         <td scope="col" style="width: 50%; border: 1px solid black; border-collapse: collapse;"><b>Comments / Suggestion</b></td>
                         <td scope="col" style="width: 15%; border: 1px solid black; border-collapse: collapse;"><b>Page</b></td>
                         <td scope="col" style="width: 5%; border: 1px solid black; border-collapse: collapse;" colspan="3"><b>Action</b></td>
-                        
+
                         </tr>
                     </thead>
                     <tbody>';
                         while ($rowCom = $result->fetch_assoc()) {
-                          
+
                           echo '
                           <tr>
                             <td scope="col" style=" border: 1px solid black; border-collapse: collapse;">
@@ -697,6 +712,7 @@
                         echo "
                         </tbody>";
                       }else{
+                        $haveprint = 0;
                         echo '<thead>
                       <tr>
                         <td scope="col" style="width: 100%; border: 1px solid black; border-collapse: collapse;" ><center>No Comments yet.</center></td>
@@ -704,10 +720,21 @@
                     </thead><tbody></tbody>';
                       }
                     ?>
-                      
-                    
-                   
+
+
+
                 </table>
+                <?php
+                  if($haveprint==="1"){
+
+                  }
+
+                ?>
+                <a href="comment_reports.php?paper_trail=1">
+                <div class="btn btn-success">
+                  Print Comments
+                </div>
+             </a>
               </div>
 
               <?php
@@ -719,10 +746,10 @@
                       <div class="col-md-12" style="font-size: 18pt; font-weight: bold;">
                        Files and Certificates
                       </div>
-                      
+
                       <div class="col-md-12" style="width: 100%; height: 2px; background-color: blue;"></div>
                         <br>
-                        
+
                         <div class="col-md-12">
                           <em style="color: red;">
                               <ul>';
@@ -734,9 +761,9 @@
 
                         </div>
                         <div class="col-md-12" style="font-weight: bold; font-size: 14pt; padding-left: 30px; color: #0052cc; "><a style="text-decoration: underline;" href="documents.php?book_id='. $book_id .'">View all Documents of this paper</a></div>
-          
+
                     </div>
-                    
+
                   </div><br>';
                   }
 
@@ -745,11 +772,11 @@
 
                 <div class="modal fade" id="modaladdnew" role="dialog">
                     <div class="modal-dialog">
-                    
+
                       <!-- Modal content-->
                       <div class="modal-content">
                         <div class="modal-header">
-                          
+
                           <h4 class="modal-title" id="modal-title">Add new Comments / Suggestions</h4>
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
@@ -758,12 +785,12 @@
                             <div class="container">
                               <div class="form-group">
                                 <label for="origin">Originator:</label>
-                                
-                                    <?php 
+
+                                    <?php
                                       $dbconfig= new dbconfig();
                                       $con= $dbconfig -> getCon();
                                       $query= "SELECT * FROM `comments` WHERE `trail_id` = $trail_id";
-                                      $result = $con -> query($query);  
+                                      $result = $con -> query($query);
 
                                         if($result->num_rows>0){
                                           $row = $result->fetch_assoc();
@@ -779,7 +806,7 @@
                                     </select>';
                                         }
                                     ?>
-                                
+
                               </div>
                               <div class="form-group">
                                 <label for="parts-man">Parts of Manuscript:</label>
@@ -793,29 +820,29 @@
                                 <label for="page-num">Page:</label>
                                 <input type="text" class="form-control" id="page-num">
                               </div>
-                             
-                            
+
+
                             </div>
 
-                            
+
                           </form>
                         </div>
                         <div class="modal-footer">
                           <button class="btn btn-success" id="btn-save" <?php echo ' name="' . $trail_id . '"';?> >Save Comments</button>
                         </div>
                       </div>
-                      
+
                     </div>
                   </div>
 
                   <!--Publication modal-->
                 <div class="modal fade" id="modaladdpub" role="dialog">
                     <div class="modal-dialog">
-                    
+
                       <!-- Modal content-->
                       <div class="modal-content">
                         <div class="modal-header">
-                          
+
                           <h4 class="modal-title" id="modal-title-pub">Add new publication information</h4>
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
@@ -827,39 +854,39 @@
                             </div>
                             <div class="form-group">
                               <label for="journal"> Name of Journal: <em style="color: red">*</em></label>
-                              <input type="text" placeholder="journal name" id="journal" name="journal" class="form-control" 
+                              <input type="text" placeholder="journal name" id="journal" name="journal" class="form-control"
                                     style= "font-family: Century Gothic; font-size: 13pt;  font-weight: bold;">
                             </div>
                             <div class="form-group">
                               <label for="type">Type of Journal: <em style="color: red">*</em></label>
-                               <input type="text" placeholder="journal type" name="type" id="type" class="form-control" 
+                               <input type="text" placeholder="journal type" name="type" id="type" class="form-control"
                                   style= "font-family: Century Gothic; font-size: 13pt;  font-weight: bold;">
                             </div>
                             <div class="form-group">
                               <label for="pubdate">Date: <em style="color: red">*</em></label>
-                              <input type="date" width="100%" name="pubdate" id="pubdate" placeholder="" class="form-control" 
+                              <input type="date" width="100%" name="pubdate" id="pubdate" placeholder="" class="form-control"
                                 style= "font-family: Century Gothic; font-size: 13pt;  font-weight: bold;">
                             </div>
-                            
-                                        
+
+
                           </form>
                         </div>
                         <div class="modal-footer">
                           <button type="button" id= "instructor-btn-pub-save" class="btn btn-success" style="float: right"> SAVE </button>
                         </div>
                       </div>
-                      
+
                     </div>
                   </div>
 
                   <!--dissemination modal-->
                   <div class="modal fade" id="modaldis" role="dialog">
                     <div class="modal-dialog">
-                    
+
                       <!-- Modal content-->
                       <div class="modal-content">
                         <div class="modal-header">
-                          
+
                           <h4 class="modal-title" id="modal-title-dis">Add new dissemination information</h4>
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
@@ -883,39 +910,39 @@
                             </div>
                             <div class="form-group">
                               <label for="con-ven">Venue of Conference: <em style="color: red">*</em></label>
-                               <input type="text" placeholder="Conference venue" id="con-ven" name="con-ven" class="form-control" 
+                               <input type="text" placeholder="Conference venue" id="con-ven" name="con-ven" class="form-control"
                                     style= " font-size: 15px; font-weight: bold;">
                             </div>
                             <div class="form-group">
                               <label for="disdate"> Date: <em style="color: red">*</em></label>
-                              <input type="date" width="100%" name="disdate" id="disdate"  class="form-control" 
+                              <input type="date" width="100%" name="disdate" id="disdate"  class="form-control"
                                 style= " font-size: 15px;  font-weight: bold;">
                             </div>
                             <div class="form-group">
                               <label for="dis-cert">Certificates if Available: <em style="color: red">*</em></label>
-                              <input type="file" name="myFile[]" id="dis-cert" class="form-control" 
+                              <input type="file" name="myFile[]" id="dis-cert" class="form-control"
                                 style= "font-size: 15px; font-weight: bold;" multiple>
                             </div>
-                            
-                                        
+
+
                           </form>
                         </div>
                         <div class="modal-footer">
                           <button type="button" id="instructor-btn-dis-save" class="btn btn-success" style="float: right">SAVE</button>
                         </div>
                       </div>
-                      
+
                     </div>
                   </div>
 
                   <!--dissemination modal-->
                   <div class="modal fade" id="modalutil" role="dialog">
                     <div class="modal-dialog">
-                    
+
                       <!-- Modal content-->
                       <div class="modal-content">
                         <div class="modal-header">
-                          
+
                           <h4 class="modal-title" id="modal-title-util">Add new utilization information</h4>
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
@@ -935,37 +962,37 @@
                               <input type="text" placeholder="Address" id="util-ad" name="util-ad"
                                   style= "font-size: 15px; font-weight: bold;" class="form-control">
                             </div>
-                            
+
                             <div class="form-group">
                               <label for="utildate"> Date: <em style="color: red">*</em></label>
-                              <input type="date" width="100%" name="util-date" id="util-date"  class="form-control" 
+                              <input type="date" width="100%" name="util-date" id="util-date"  class="form-control"
                                 style= " font-size: 15px;  font-weight: bold;">
                             </div>
                             <div class="form-group">
                               <label for="dis-cert">Certificates if Available: <em style="color: red">*</em></label>
-                              <input type="file" name="myFile[]" id="dis-cert" class="form-control" 
+                              <input type="file" name="myFile[]" id="dis-cert" class="form-control"
                                 style= "font-size: 15px; font-weight: bold;" multiple>
                             </div>
-                            
-                                        
+
+
                           </form>
                         </div>
                         <div class="modal-footer">
                           <button type="button" id="instructor-btn-util-save" class="btn btn-success" style="float: right">SAVE</button>
                         </div>
                       </div>
-                      
+
                     </div>
                   </div>
 
                   <!--Awards modal-->
                   <div class="modal fade" id="modalawards" role="dialog">
                     <div class="modal-dialog">
-                    
-                      <!-- Modal content--> 
+
+                      <!-- Modal content-->
                       <div class="modal-content">
                         <div class="modal-header">
-                          
+
                             <h4 class="modal-title" id="modal-title-awards">Add newawards information</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
@@ -984,10 +1011,10 @@
                             <label for="parties">Giving Parties: <em style="color: red">*</em></label>
                             <input type="text" placeholder="Organization name , etc" id="parties" name="parties" style= "font-size: 15px;font-weight: bold;" class="form-control">
                           </div>
-                            
+
                             <div class="form-group">
                               <label for="awards-loc"> Location: <em style="color: red">*</em></label>
-                              <input type="text" width="100%" name="awards-loc" id="awards-loc"  class="form-control" placeholder="Location" 
+                              <input type="text" width="100%" name="awards-loc" id="awards-loc"  class="form-control" placeholder="Location"
                                 style= " font-size: 15px;  font-weight: bold;">
                             </div>
                             <div class="form-group">
@@ -996,23 +1023,23 @@
                             </div>
                             <div class="form-group">
                               <label for="awards-date"> Date: <em style="color: red">*</em></label>
-                              <input type="date" width="100%" name="awards-date" id="awards-date"  class="form-control" 
+                              <input type="date" width="100%" name="awards-date" id="awards-date"  class="form-control"
                                 style= " font-size: 15px;  font-weight: bold;">
                             </div>
                             <div class="form-group">
                               <label for="awards-cert">Certificates if Available: <em style="color: red">*</em></label>
-                              <input type="file" name="myFile[]" id="awards-cert" class="form-control" 
+                              <input type="file" name="myFile[]" id="awards-cert" class="form-control"
                                 style= "font-size: 15px; font-weight: bold;" multiple>
                             </div>
-                            
-                                        
+
+
                           </form>
                         </div>
                         <div class="modal-footer">
                           <button type="button" id="instructor-btn-wards-save" class="btn btn-success" style="float: right">SAVE</button>
                         </div>
                       </div>
-                      
+
                     </div>
                   </div>
 
@@ -1049,7 +1076,7 @@
     <script src="js/jquery.form.min.js"></script>
     <script src="js/searchdoc.js"></script>
     <script type="text/javascript" src="js/editdocu.js"></script>
-       
-	  
+
+
 </body>
 </html>
