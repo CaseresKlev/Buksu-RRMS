@@ -63,12 +63,17 @@
                 <h4>Research Record Mangement System</h4>
             </div>
             <div class="sidebar-header">
-                <h5 style="color: #00004d;"><?php echo strtoupper($accname) ?></h5>
-                <h6><?php echo strtoupper($acctype) ?></h6>
+                <i class="fas fa-user-circle fa-3x"></i>
+                <span style="position: absolute; margin-left: 10px">
+                  <h5 style="color: #BDB5B5"><?php echo strtoupper($accname) ?></h5>
+                  <h6> <?php echo strtoupper($acctype) ?></h6>
+                </span>
             </div>
-            <ul class="list-unstyled components">
+            <ul class="list-unstyled components" style="margin-left: 10%">
                 <li class="active">
-                    <a href="admindashboard.php"class="dropdown-toggle">Research</a>
+                    <a href="admindashboard.php"class="dropdown-toggle">Research
+                      <i class="fas fa-circle fa-xs" style="color:red"></i>
+                    </a>
                     <!--<ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
                             <a href="#">Home 1</a>
@@ -99,7 +104,7 @@
                     </ul>-->
                 </li>
                 <li>
-                    <a href="book_reports.php?title=&dept=&status=&author=&from=0&to=2018">Reports</a>
+                    <a href="book_reports.php?title=&dept=&status=&author=&from=0&to=2018" target="_blank">Reports</a>
                 </li>
                 <li>
                     <a href="dept.php">Department</a>
@@ -119,7 +124,7 @@
         <!-- Page Content  -->
         <div id="content">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg" style="background: #CDCDD8">
                 <div class="container-fluid">
 
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
@@ -131,24 +136,31 @@
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="index.php">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="new-login.php">Logout</a>
-                            </li>
-                            <!--<li class="nav-item">
-                                <a class="nav-link" href="#">Page</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Page</a>
-                            </li>-->
-                        </ul>
+                      <ul class="nav navbar-nav ml-auto">
+                          <li class="nav-item active">
+                              <a class="nav-link" href="index.php">Home</a>
+                          </li>
+                          <li class="nav-item active">
+                              <a class="nav-link" href="inbox.php">
+                                  <i class="fas fa-envelope fa-lg"> </i>
+                                  Inbox
+                                  <i class="fas fa-circle fa-xs" style="color:red"></i>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="new-login.php">Logout</a>
+                          </li>
+                          <!--<li class="nav-item">
+                              <a class="nav-link" href="#">Page</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#">Page</a>
+                          </li>-->
+                      </ul>
                     </div>
                 </div>
             </nav>
-           
+
 
            <!---- PLACE YOUR DIVS HERE --->
            <div class="container">
@@ -179,11 +191,11 @@
                         <td scope="col" style="font-weight: bold; font-size: 15pt">Status</td>
                         <td scope="col" style="font-weight: bold; font-size: 15pt">Action</td>
                       </tr>
-                      
+
                     </thead>
                     <tbody>
 
-                      <?php 
+                      <?php
 
                           $max = 2;
                           include_once 'connection.php';
@@ -251,7 +263,7 @@
                           </select>
                         </td>
                         <td scope="col" style="width: 5%%"><button class="btn btn-success btn-md" name="'. $row['count'] .'-' . $row3['id'] . '-' . $row['step-id']. '" id="btn[]">Save</button></td>
-                      </tr>'; 
+                      </tr>';
                     }else{
 
                       if($max>=9){
@@ -264,7 +276,7 @@
                           </select>
                         </td>
                         <td scope="col" style="width: 5%%"><button class="btn btn-success btn-md" name="'. $row['count'] .'-' . $row3['id'] . '-' . $row['step-id']. '" id="btn[]">Save</button></td>
-                      </tr>'; 
+                      </tr>';
                       }else{
                         echo '<tr>
                         <td scope="col" style="width: 75%"><em class="btn btn-default btn-md" style="width: 100%; text-align: left; style=" disabled="true">'. $row['step'] .'</em></td>
@@ -277,22 +289,22 @@
                         <td scope="col" style="width: 5%%"><button class="btn btn-default btn-md" disabled="true" id="btn[]">Save</button></td>
                       </tr>';
                       }
-                       
+
                     }
-                                
+
                               }
 
-                              
+
                             }
                           }
 
                       ?>
 
-                      
-                      
-                      
+
+
+
                     </tbody>
-                    
+
                   </table>
                </div>
            </div>
@@ -329,7 +341,7 @@
     </script>
 
     <script src="js/searchdoc.js"></script>
-       
-	  
+
+
 </body>
 </html>

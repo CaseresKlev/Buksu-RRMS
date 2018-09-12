@@ -19,7 +19,7 @@
   }else if($acctype==="INSTRUCTOR"){
     //echo "Instructor ang naka login";
 
-    
+
   }else if($acctype==="STUDENT"){
     header("Location: index.php");
   }
@@ -55,12 +55,17 @@
                 <h4>Research Record Mangement System</h4>
             </div>
             <div class="sidebar-header">
-                <h5 style="color: #00004d;"><?php echo strtoupper($accname) ?></h5>
-                <h6><?php echo strtoupper($acctype) ?></h6>
+              <i class="fas fa-user-circle fa-3x"></i>
+                <span style="position: absolute; margin-left: 10px">
+                  <h5 style="color: #BDB5B5;"><?php echo strtoupper($accname) ?></h5>
+                  <h6><?php echo strtoupper($acctype) ?></h6>
+                </span>
             </div>
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Research</a>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Research
+                      <i class="fas fa-circle fa-xs" style="color:red"></i>
+                    </a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
                             <a href="instructordashboard.php">Finished Reserch</a>
@@ -68,7 +73,7 @@
                         <li>
                             <a href="instructor-on-process-paper.php">On-Process Research</a>
                         </li>
-                        
+
                     </ul>
                 </li>
                 <li>
@@ -86,9 +91,9 @@
                     </ul>-->
                 </li>
                 <li>
-                    <a href="book_reports.php?title=&dept=&status=&author=&from=0&to=2018">Reports</a>
+                    <a href="book_reports.php?title=&dept=&status=&author=&from=0&to=2018" target="_blank">Reports</a>
                 </li>
-                
+
             </ul>
 
             <!--<ul class="list-unstyled CTAs">
@@ -104,7 +109,7 @@
         <!-- Page Content  -->
         <div id="content">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg" style="background: #CDCDD8">
                 <div class="container-fluid">
 
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
@@ -116,27 +121,34 @@
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="index.php">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="new-login.php">Logout</a>
-                            </li>
-                            <!--<li class="nav-item">
-                                <a class="nav-link" href="#">Page</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Page</a>
-                            </li>-->
-                        </ul>
+                      <ul class="nav navbar-nav ml-auto">
+                          <li class="nav-item hover">
+                              <a class="nav-link" href="index.php">Home</a>
+                          </li>
+                          <li class="nav-item hover">
+                              <a class="nav-link" href="inbox.php">
+                                  <i class="fas fa-envelope fa-lg"> </i>
+                                  Inbox
+                                  <i class="fas fa-circle fa-xs" style="color:red"></i>
+                              </a>
+                          </li>
+                          <li class="nav-item hover">
+                              <a class="nav-link" href="new-login.php">Logout</a>
+                          </li>
+                          <!--<li class="nav-item">
+                              <a class="nav-link" href="#">Page</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#">Page</a>
+                          </li>-->
+                      </ul>
                     </div>
                 </div>
             </nav>
-           
+
 
            <!---- PLACE YOUR DIVS HERE --->
-            
+
            <div class="container">
                 <?php
 
@@ -148,14 +160,14 @@
                   if($result->num_rows>0){
                     $row = $result->fetch_assoc();
                   }
-                  
+
                 ?>
 
                <div class="row"  style="padding-left: 15px">
                    <em><h2><?php echo $row['book_title']; ?><h2></em>
                </div>
                <div class="row"  style="padding-left: 15px">
-                   <b style="font-size:12pt;"> Author: 
+                   <b style="font-size:12pt;"> Author:
                         <?php
                           $dbconfig= new dbconfig();
                           $con= $dbconfig -> getCon();
@@ -184,7 +196,7 @@
                     <th scope="col">Step</th>
                     <th scope="col">Description</th>
                     <th scope="col">Status</th>
-                    
+
                   </tr>
                 </thead>
 
@@ -204,24 +216,24 @@
                                 <th scope="row">' . $rowDis['p_sat_id'] .'</th>
                                 <th scope="row"><a href="view-full-status.php?trail=' . $rowDis['id'] . '&book_id=' . $book_id . '"style="text-decoration: underline">' . $rowDis['title'] . '</a></th>
                                 <td style="background-color: #66ff66">Done</td>
-                                
+
                               </tr>';
                             }else{
                               echo '<tr>
                                 <th scope="row">' . $rowDis['p_sat_id'] .'</th>
                                 <th scope="row"><a href="view-full-status.php?trail=' . $rowDis['id'] . '&book_id=' . $book_id . '" style="text-decoration: underline">' . $rowDis['title'] . '</a></th>
                                 <td style="background-color: #ffb84d">Some requirements are missing.</td>
-                                
+
                               </tr>';
                             }
-                       
+
                     }
                   }
-                    
+
                   ?>
 
-                  
-                  
+
+
                 </tbody>
                 <th></th>
               </table>
@@ -229,7 +241,7 @@
                <hr>
            </div>
 
-            
+
 
 
 
@@ -262,7 +274,7 @@
     </script>
 
     <script src="js/searchdoc.js"></script>
-       
-	  
+
+
 </body>
 </html>

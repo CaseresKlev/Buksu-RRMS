@@ -53,12 +53,17 @@
                 <h4>Research Record Mangement System</h4>
             </div>
             <div class="sidebar-header">
-                <h5 style="color: #00004d;"><?php echo strtoupper($accname) ?></h5>
-                <h6><?php echo strtoupper($acctype) ?></h6>
+              <i class="fas fa-user-circle fa-3x"></i>
+                <span style="position: absolute; margin-left: 10px">
+                  <h5 style="color: #BDB5B5;"><?php echo strtoupper($accname) ?></h5>
+                  <h6><?php echo strtoupper($acctype) ?></h6>
+                </span>
             </div>
-            <ul class="list-unstyled components">
-                <li class="active">
-                    <a href="admindashboard.php"class="dropdown-toggle">Research</a>
+            <ul class="list-unstyled components" style="margin-left: 10%">
+                <li>
+                    <a href="admindashboard.php"class="dropdown-toggle">Research
+                        <i class="fas fa-circle fa-xs" style="color:red"></i>
+                    </a>
                     <!--<ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
                             <a href="#">Home 1</a>
@@ -74,8 +79,8 @@
                 <li>
                     <a href="updateAcc.php">Update Account</a>
                 </li>
-                <li>
-                    <a href="accesscode.php" class="dropdown-toggle">Access Codes</a>
+                <li class="active">
+                    <a href="accesscode.php" class="dropdown-toggle">Access Codes </a>
                     <!--<ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
                             <a href="#">Page 1</a>
@@ -89,7 +94,7 @@
                     </ul>-->
                 </li>
                 <li>
-                    <a href="book_reports.php?title=&dept=&status=&author=&from=0&to=2018">Reports</a>
+                    <a href="book_reports.php?title=&dept=&status=&author=&from=0&to=2018" target="_blank">Reports</a>
                 </li>
                 <li>
                     <a href="dept.php">Department</a>
@@ -109,7 +114,7 @@
         <!-- Page Content  -->
         <div id="content">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light" data-spy="affix" data-offset-top="197">
+            <nav class="navbar navbar-expand-lg" style="background: #CDCDD8" data-spy="affix" data-offset-top="197">
                 <div class="container-fluid">
 
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
@@ -122,10 +127,17 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item active">
+                            <li class="nav-item hover">
                                 <a class="nav-link" href="index.php">Home</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item hover">
+                                <a class="nav-link" href="inbox.php">
+                                    <i class="fas fa-envelope fa-lg"> </i>
+                                    Inbox
+                                    <i class="fas fa-circle fa-xs" style="color:red"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item hover">
                                 <a class="nav-link" href="new-login.php">Logout</a>
                             </li>
                             <!--<li class="nav-item">
@@ -138,7 +150,7 @@
                     </div>
                 </div>
             </nav>
-           
+
 
            <!---- PLACE YOUR DIVS HERE --->
 
@@ -154,7 +166,7 @@
 				}
 			     </script>
                 <div class="line"></div>
-                    
+
                 <div class="row">
                   <div class="col-md-12">
                       Number of Access Code:
@@ -168,18 +180,18 @@
                         <button type="button" id="admin-btn-generate" class="btn  btn-primary" style="float:left"> GENERATE </button>
                     </div>
                 </div>
-                
-                
+
+
             </div>
             <div class="line"></div>
-                
+
             <div class="container">
                 <div class="row" style="text-align:center">
-                    
+
                     <h5>Available Accesskey</h5>
                 </div>
                 <div class="row" id="printtable">
-                    
+
                     <table style="width:100%"border="1" cellpadding="3" id="tbl-accescodes" style="font-size: 15px" >
 
 					<tr class="access-tr-head">
@@ -215,14 +227,14 @@
 					?>
 				</table>
                 </div>
-           
+
                 <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
                 <div class="row">
                     <button class="btn btn-primary"onclick="printDiv()" style="width: 100px; font-size: 13pt">Print</button>
                 </div>
-                
-                
-                
+
+
+
             </div>
             <script>
 		function printDiv() {
@@ -231,13 +243,6 @@
 			 window.frames["print_frame"].window.print();
 		 }
 		</script>
-
-            
-
-
-
-
-
 
 
 
@@ -267,6 +272,6 @@
        <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
       <script src="js/accesscode.js"></script>
 
-	  
+
 </body>
 </html>
