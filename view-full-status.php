@@ -293,7 +293,7 @@ session_start();
                       </div>
                       <div class="col-md-12" style="width: 100%; height: 2px; background-color: blue;"></div>
                        <br><br>
-                      <div class="col-md-12"><em style="font-size: 15pt; font-weight: bold; "><a style="color: red" href="'. 'add-research.php' .'">--> Submit your final paper Here <--</a></em></div>
+                      <div class="col-md-12"><em style="font-size: 15pt; font-weight: bold; "><a style="color: red" href="'. 'submitfinal.php?book_id='. $book_id .'">--> Submit your final paper Here <--</a></em></div>
 
 
                     </div>

@@ -24,6 +24,8 @@ if(isset($_GET['paper_trail'])){
   }
 
 
+}else{
+  header("Location: admindashboard.php");
 }
 //echo $origin;
 ?>
@@ -110,6 +112,7 @@ if(isset($_GET['paper_trail'])){
               margin-right: auto;
               margin-top: auto;
               margin-bottom: auto;
+              display: none;
             }
 
 
@@ -222,7 +225,6 @@ if(isset($_GET['paper_trail'])){
 
                         <div class="row">
                             <table width="100%" id="tablefirst" class="table" style="border:1px solid black;">
-<<<<<<< HEAD
                               
                                 <?php
                                 include_once 'connection.php';
@@ -249,93 +251,6 @@ if(isset($_GET['paper_trail'])){
 
                                   ?>
                                   
-                              
-
-                              
-=======
-                              <tr style="border:1px solid black;">
-                                  <th id="tabletwo"> Part of the Manuscript </th>
-                                  <th id="tabletwo"> Comments and Suggestions </th>
-                                  <th id="tabletwo"> Pages </th>
-                              </tr>
-
-                              <tr style="border:1px solid black; height:50%;">
-                                  <td id="tabletextfield">  </th>
-                                  <td id="tabletextfield">  </th>
-                                  <td id="tabletextfield">  </th>
-                              </tr>
-
-                              <tr style="border:1px solid black; height:50%;">
-                                  <td id="tabletextfield">  </th>
-                                  <td id="tabletextfield">  </th>
-                                  <td id="tabletextfield">  </th>
-                              </tr>
-
-                              <tr style="border:1px solid black; height:50%;">
-                                  <td id="tabletextfield">  </th>
-                                  <td id="tabletextfield">  </th>
-                                  <td id="tabletextfield">  </th>
-                              </tr>
-
-                              <tr style="border:1px solid black; height:50%;">
-                                  <td id="tabletextfield">  </th>
-                                  <td id="tabletextfield">  </th>
-                                  <td id="tabletextfield">  </th>
-                              </tr>
-
-                              <tr style="border:1px solid black; height:50%;">
-                                  <td id="tabletextfield">  </th>
-                                  <td id="tabletextfield">  </th>
-                                  <td id="tabletextfield">  </th>
-                              </tr>
-
-                              <tr style="border:1px solid black; height:50%;">
-                                  <td id="tabletextfield">  </th>
-                                  <td id="tabletextfield">  </th>
-                                  <td id="tabletextfield">  </th>
-                              </tr>
-
-                              <tr style="border:1px solid black; height:50%;">
-                                  <td id="tabletextfield">  </th>
-                                  <td id="tabletextfield">  </th>
-                                  <td id="tabletextfield">  </th>
-                              </tr>
-
-                              <tr style="border:1px solid black; height:50%;">
-                                  <td id="tabletextfield">  </th>
-                                  <td id="tabletextfield">  </th>
-                                  <td id="tabletextfield">  </th>
-                              </tr>
-                                <tr style="border:1px solid black; height:50%;">
-                                    <td id="tabletextfield">  </th>
-                                    <td id="tabletextfield">  </th>
-                                    <td id="tabletextfield">  </th>
-                                </tr>
-
-                                <tr style="border:1px solid black; height:50%;">
-                                    <td id="tabletextfield">  </th>
-                                    <td id="tabletextfield">  </th>
-                                    <td id="tabletextfield">  </th>
-                                </tr>
-
-                                <tr style="border:1px solid black; height:50%;">
-                                    <td id="tabletextfield">  </th>
-                                    <td id="tabletextfield">  </th>
-                                    <td id="tabletextfield">  </th>
-                                </tr>
-
-                                <tr style="border:1px solid black; height:50%;">
-                                    <td id="tabletextfield">  </th>
-                                    <td id="tabletextfield">  </th>
-                                    <td id="tabletextfield">  </th>
-                                </tr>
-
-                                <tr style="border:1px solid black; height:50%;">
-                                    <td id="tabletextfield">  </th>
-                                    <td id="tabletextfield">  </th>
-                                    <td id="tabletextfield">  </th>
-                                </tr>
->>>>>>> 57613a361b4ebe53dc623ee40937430d283b145e
                             </table>
                         </div>
 
@@ -405,6 +320,7 @@ if(isset($_GET['paper_trail'])){
               <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
     <script type="text/javascript">
       $("#print").click(function(){
+        $("#footer").show();
       $(this).hide();
       //$("#printable").hide();
       window.print();
@@ -413,6 +329,7 @@ if(isset($_GET['paper_trail'])){
       window.onafterprint = function(){
        $("#filter-div").show();
        $("#print").show();
+       $("#footer").show()
     }
     </script>
 </body>
