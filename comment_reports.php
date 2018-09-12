@@ -4,17 +4,22 @@
 if(isset($_GET['paper_trail'])){
   $trail_id = $_GET['paper_trail'];
   $origin = "";
+  $author = "";
+  $book_title = "";
+
 
 
   include_once 'connection.php';
   $dbconfig = new dbconfig();
   $conn = $dbconfig->getCon();
-  $query = "SELECT comments.parts, comments.comments, comments.origin, comments.page from comments INNER JOIN paper_trail on paper_trail.id = comments.trail_id where paper_trail.id = 36";
+  $query = "SELECT comments.parts, comments.comments, comments.origin, comments.page, book.book_title, (SELECT concat('',(GROUP_CONCAT((select concat( author.a_lname, ',', SUBSTRING(author.a_fname, 1,1))) SEPARATOR '; '))) as authors FROM junc_authorbook INNER JOIN author on author.a_id = junc_authorbook.aut_id WHERE junc_authorbook.book_id = book.book_id) AS 'authors' from comments INNER JOIN paper_trail on paper_trail.id = comments.trail_id INNER JOIN book on book.book_id = paper_trail.book_id where paper_trail.id = 36";
   $result = $conn->query($query);
   if($result->num_rows>0){
     while ($row=$result->fetch_assoc()) {
+      //echo "string";
       $origin = $row['origin'];
-      //echo $origin;
+      $author = $row['authors'];
+      $book_title = $row['book_title'];
     }
   }
 
@@ -138,15 +143,7 @@ if(isset($_GET['paper_trail'])){
         </div>
         <div class="row">
           <table width="100%" id="tablefirst" class="table" style="border:1px solid black;">
-                <?php
-                  if($result->num_rows>0){
-                  while ($row=$result->fetch_assoc()) {
-                    $origin = $row['origin'];
-                    //echo $origin;
-                  }
-                }
-
-                ?>
+                
                 <tr>
                     <td scope="col" style="height: 60px; border:1px solid black;">
                       <i class="fas fa-square-full" style="color:<?php if($origin==="Research Committee"){ echo "#3399ff"; }else{ echo "white"; }  ?>;"></i>
@@ -177,39 +174,45 @@ if(isset($_GET['paper_trail'])){
             <br>
 
             <div class="row">
-                <h6> Title of Research:   </h6>
+                <h5> Title of Research:   <?php echo $book_title ?></h5>
             </div>
               <div class="row">
-                  <h6> Proponents:   </h6>
+                  <h5> Proponents:   <?php echo $author ?></h5>
               </div>
 
               <br>
 
                         <div class="row">
                             <table width="100%" id="tablefirst" class="table" style="border:1px solid black;">
-                              <tr style="border:1px solid black;">
-                                  <th id="tabletwo"> Part of the Manuscript </th>
-                                  <th id="tabletwo"> Comments and Suggestions </th>
-                                  <th id="tabletwo"> Pages </th>
-                              </tr>
+                              
+                                <?php
+                                include_once 'connection.php';
+                                  $dbconfig = new dbconfig();
+                                  $conn = $dbconfig->getCon();
+                                  $query = "SELECT comments.parts, comments.comments, comments.origin, comments.page, book.book_title, (SELECT concat('',(GROUP_CONCAT((select concat( author.a_lname, ',', SUBSTRING(author.a_fname, 1,1))) SEPARATOR '; '))) as authors FROM junc_authorbook INNER JOIN author on author.a_id = junc_authorbook.aut_id WHERE junc_authorbook.book_id = book.book_id) AS 'authors' from comments INNER JOIN paper_trail on paper_trail.id = comments.trail_id INNER JOIN book on book.book_id = paper_trail.book_id where paper_trail.id = 36";
+                                  $result = $conn->query($query);
 
-                              <tr style="border:1px solid black; height:50%;">
-                                  <td id="tabletextfield">  </th>
-                                  <td id="tabletextfield">  </th>
-                                  <td id="tabletextfield">  </th>
-                              </tr>
+                                    if($result->num_rows>0){
 
-                              <tr style="border:1px solid black; height:50%;">
-                                  <td id="tabletextfield">  </th>
-                                  <td id="tabletextfield">  </th>
-                                  <td id="tabletextfield">  </th>
-                              </tr>
+                                    while ($row=$result->fetch_assoc()) {
 
-                              <tr style="border:1px solid black; height:50%;">
-                                  <td id="tabletextfield">  </th>
-                                  <td id="tabletextfield">  </th>
-                                  <td id="tabletextfield">  </th>
-                              </tr>
+                                      //$origin = $row['origin'];
+                                      echo '
+                                <tr style="border:1px solid black;">
+                                  <th id="tabletwo">'. $row['parts'] .'</th>
+                                  <th id="tabletwo"> '.  $row['comments'] .' </th>
+                                  <th id="tabletwo"> '. $row['page'] .' </th>
+                                </tr>';
+                                    }
+                                  }else{
+                                    echo "string";
+                                  }
+
+                                  ?>
+                                  
+                              
+
+                              
                             </table>
                         </div>
 
