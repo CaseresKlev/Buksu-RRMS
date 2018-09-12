@@ -664,11 +664,14 @@
 
                     <tbody>
                       <?php
+                      $haveprint = 0;
+
                       $dbconfig= new dbconfig();
                       $con= $dbconfig -> getCon();
                       $query= "SELECT * FROM `comments` WHERE `trail_id` = $trail_id";
                       $result = $con -> query($query);
                       if($result->num_rows>0){
+                        $haveprint = 1;
                         echo '<thead>
                       <tr>
                         <td scope="col" style="width: 30%; border: 1px solid black; border-collapse: collapse;" ><b>Parts of Manuscript</b></td>
@@ -709,6 +712,7 @@
                         echo "
                         </tbody>";
                       }else{
+                        $haveprint = 0;
                         echo '<thead>
                       <tr>
                         <td scope="col" style="width: 100%; border: 1px solid black; border-collapse: collapse;" ><center>No Comments yet.</center></td>
@@ -720,6 +724,17 @@
 
 
                 </table>
+                <?php
+                  if($haveprint==="1"){
+
+                  }
+
+                ?>
+                <a href="comment_reports.php?paper_trail=1">
+                <div class="btn btn-success">
+                  Print Comments
+                </div>
+             </a>
               </div>
 
               <?php

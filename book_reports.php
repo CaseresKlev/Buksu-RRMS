@@ -23,6 +23,10 @@
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 	<script type="text/javascript" src="js/print.js"></script>
 	<style type="text/css">
+
+		@media print{
+			
+		}
 		table, tr, td{
     	/*border-collapse: collapse;*/
     	text-align: left;
