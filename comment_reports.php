@@ -54,11 +54,25 @@ if(isset($_GET['paper_trail'])){
             #buksulogo {
               max-width:100%;
               max-height:100%;
+              padding-top: 15px;
             }
 
-            #anneheader {
+            #anneheader1 {
               width: 100%;
               text-align: center;
+              font-size: 25pt;
+            }
+
+            #anneheader2 {
+              width: 100%;
+              text-align: center;
+              font-size: 15pt;
+            }
+
+            #anneheader3 {
+              width: 100%;
+              text-align: center;
+              font-size: 14pt;
             }
 
             #tabletwo {
@@ -88,28 +102,52 @@ if(isset($_GET['paper_trail'])){
               font-size: 90%;
             }
 
-            @page{
-        margin-left: 10mm;
-        margin-top: 0mm;
-        margin-bottom: 0mm;
-        @bottom-center { content: element(footer)}
+            #footer {
+              position: fixed;
+              bottom: 0px;
+              width: 100%;
+              margin-left: auto;
+              margin-right: auto;
+              margin-top: auto;
+              margin-bottom: auto;
+            }
 
 
-      }
+            /*@page{
+              margin: .3cm;
+              margin-left: 10mm;
+              margin-top: 5mm;
+              margin-bottom: 30mm;
+              /*@bottom-center {
+                content: element(footer);
+              }
+            }*/
 
-      
 
-      @media print{
-        -fs-table-paginate: paginate;
+            /*@bottom-center {
+              content: element(footer);
+            }*/
 
-      }
+            /*@page {
+              @bottom-center {
+                content: element(footer);
+              }
+            }*/
+
+            @media print {
+              @bottom-center {
+                content: element(footer);
+              }
+
+
+            }
 
 
           </style>
 </head>
 <body>
-  <div class="" style="position: absolute; top: 0; left: 0; width: 100%; background-color: #ccc; height: 50px; display: none">
-    
+  <div id="header" style="position: fixed; top: 0; left: 0; width: 100%;  height: 50px;">
+
   </div>
   <br>
   <br>
@@ -123,13 +161,13 @@ if(isset($_GET['paper_trail'])){
               </div>
               <div class="col-md-8" style="text-align:justify;">
 
-                      <h4 id="anneheader"> BUKIDNON STATE UNIVERSITY </h4>
+                      <h4 id="anneheader1"> BUKIDNON STATE UNIVERSITY </h4>
 
 
-                      <p id="anneheader">Malaybalay City, Bukidnon 8700</p>
+                      <p id="anneheader2">Malaybalay City, Bukidnon 8700</p>
 
 
-                      <p id="anneheader"> Tel (088) 813-5661 to 5663; TeleFax (088) 813-2717, <a href="#"> www.buksu.edu.ph </a> </p>
+                      <p id="anneheader3"> Tel (088) 813-5661 to 5663; TeleFax (088) 813-2717, <a href="#"> www.buksu.edu.ph </a> </p>
 
                   <h4 style="text-align:center; width:100%;"> SUMMARY OF COMMENTS AND SUGGESTIONS </h4>
               </div>
@@ -137,7 +175,7 @@ if(isset($_GET['paper_trail'])){
         <br>
         <br>
 
-        
+
         <div class="row">
             <h6> Originator: </h6>
         </div>
@@ -184,6 +222,7 @@ if(isset($_GET['paper_trail'])){
 
                         <div class="row">
                             <table width="100%" id="tablefirst" class="table" style="border:1px solid black;">
+<<<<<<< HEAD
                               
                                 <?php
                                 include_once 'connection.php';
@@ -213,6 +252,90 @@ if(isset($_GET['paper_trail'])){
                               
 
                               
+=======
+                              <tr style="border:1px solid black;">
+                                  <th id="tabletwo"> Part of the Manuscript </th>
+                                  <th id="tabletwo"> Comments and Suggestions </th>
+                                  <th id="tabletwo"> Pages </th>
+                              </tr>
+
+                              <tr style="border:1px solid black; height:50%;">
+                                  <td id="tabletextfield">  </th>
+                                  <td id="tabletextfield">  </th>
+                                  <td id="tabletextfield">  </th>
+                              </tr>
+
+                              <tr style="border:1px solid black; height:50%;">
+                                  <td id="tabletextfield">  </th>
+                                  <td id="tabletextfield">  </th>
+                                  <td id="tabletextfield">  </th>
+                              </tr>
+
+                              <tr style="border:1px solid black; height:50%;">
+                                  <td id="tabletextfield">  </th>
+                                  <td id="tabletextfield">  </th>
+                                  <td id="tabletextfield">  </th>
+                              </tr>
+
+                              <tr style="border:1px solid black; height:50%;">
+                                  <td id="tabletextfield">  </th>
+                                  <td id="tabletextfield">  </th>
+                                  <td id="tabletextfield">  </th>
+                              </tr>
+
+                              <tr style="border:1px solid black; height:50%;">
+                                  <td id="tabletextfield">  </th>
+                                  <td id="tabletextfield">  </th>
+                                  <td id="tabletextfield">  </th>
+                              </tr>
+
+                              <tr style="border:1px solid black; height:50%;">
+                                  <td id="tabletextfield">  </th>
+                                  <td id="tabletextfield">  </th>
+                                  <td id="tabletextfield">  </th>
+                              </tr>
+
+                              <tr style="border:1px solid black; height:50%;">
+                                  <td id="tabletextfield">  </th>
+                                  <td id="tabletextfield">  </th>
+                                  <td id="tabletextfield">  </th>
+                              </tr>
+
+                              <tr style="border:1px solid black; height:50%;">
+                                  <td id="tabletextfield">  </th>
+                                  <td id="tabletextfield">  </th>
+                                  <td id="tabletextfield">  </th>
+                              </tr>
+                                <tr style="border:1px solid black; height:50%;">
+                                    <td id="tabletextfield">  </th>
+                                    <td id="tabletextfield">  </th>
+                                    <td id="tabletextfield">  </th>
+                                </tr>
+
+                                <tr style="border:1px solid black; height:50%;">
+                                    <td id="tabletextfield">  </th>
+                                    <td id="tabletextfield">  </th>
+                                    <td id="tabletextfield">  </th>
+                                </tr>
+
+                                <tr style="border:1px solid black; height:50%;">
+                                    <td id="tabletextfield">  </th>
+                                    <td id="tabletextfield">  </th>
+                                    <td id="tabletextfield">  </th>
+                                </tr>
+
+                                <tr style="border:1px solid black; height:50%;">
+                                    <td id="tabletextfield">  </th>
+                                    <td id="tabletextfield">  </th>
+                                    <td id="tabletextfield">  </th>
+                                </tr>
+
+                                <tr style="border:1px solid black; height:50%;">
+                                    <td id="tabletextfield">  </th>
+                                    <td id="tabletextfield">  </th>
+                                    <td id="tabletextfield">  </th>
+                                </tr>
+>>>>>>> 57613a361b4ebe53dc623ee40937430d283b145e
                             </table>
                         </div>
 
@@ -241,29 +364,30 @@ if(isset($_GET['paper_trail'])){
                                   <br>
                                   <br>
 
-
-
                                         <div class="row" id="footer">
-                                            <div class="col-md-3">
-                                              <p> Document Code: RU- F-032 </p>
-                                            </div>
 
-                                            <div class="col-md-2">
-                                              <p> Revision No. : 002 </p>
-                                            </div>
-
-                                            <div class="col-md-2">
-                                              <p> Issue No. 002 </p>
-                                            </div>
-                                            <div class="col-md-3">
-                                              <p> Issue Date: May 15, 2018 </p>
-                                            </div>
-
-                                            <div class="col-md-2">
-                                              <p> Page no. 1 of 1 </p>
-                                            </div>
+                                          <table class="table" >
+                                            <tr>
+                                            <td scope="col">
+                                              <em> Document Code: RU- F-032 </em>
+                                            </td>
+                                            <td scope="col">
+                                              <em> Revision No. : 002 </em>
+                                            </td>
+                                            <td scope="col">
+                                              <em> Issue No. 002 </em>
+                                            </td>
+                                            <td scope="col">
+                                              <em> Issue Date: May 15, 2018 </em>
+                                            </td>
+                                            <td scope="col">
+                                              <em> Page no. 1 of 1 </em>
+                                            </td>
+                                          </tr>
+                                          </table>
 
                                         </div>
+
 
               </div>
               <br>
@@ -272,9 +396,9 @@ if(isset($_GET['paper_trail'])){
               <div class="container">
                 <div class="row">
                   <button class="btn  btn-success btn-md" id="print">Print Reports</button>
-                    
+
                 </div>
-                
+
               </div>
               <br>
               <br>
