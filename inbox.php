@@ -137,8 +137,10 @@
                     <li>
                         <a href="dept.php">Department</a>
                     </li>
-                </ul>'
+                </ul>';
               }
+
+              ?>
 
 
         </nav>
