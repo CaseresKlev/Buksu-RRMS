@@ -98,7 +98,7 @@ if(isset($_GET['paper_trail'])){
             }
 
             #footer {
-              position: fixed;
+              position: relative;
               bottom: 0px;
               width: 100%;
               margin-left: auto;
@@ -307,6 +307,12 @@ if(isset($_GET['paper_trail'])){
                                     <td id="tabletextfield">  </th>
                                     <td id="tabletextfield">  </th>
                                 </tr>
+                                <tr style="border:1px solid black; height:50%;">
+                                    <td id="tabletextfield">  </th>
+                                    <td id="tabletextfield">  </th>
+                                    <td id="tabletextfield">  </th>
+                                </tr>
+                               
                             </table>
                         </div>
 
@@ -334,9 +340,10 @@ if(isset($_GET['paper_trail'])){
                                   <br>
                                   <br>
                                   <br>
-
+                                        
                                         <div class="row" id="footer">
-
+                                         
+                                            <footer>
                                           <table class="table" >
                                             <tr>
                                             <td scope="col">
@@ -356,14 +363,17 @@ if(isset($_GET['paper_trail'])){
                                             </td>
                                           </tr>
                                           </table>
-
+                                              
+                                               </footer>
+                                                
                                         </div>
+                                             
 
 
-              </div>
               <br>
               <br>
               <br>
+<div class="line"></div>
               <div class="container">
                 <div class="row">
                   <button class="btn  btn-success btn-md" id="print">Print Reports</button>
