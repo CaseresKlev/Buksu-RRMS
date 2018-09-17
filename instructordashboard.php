@@ -169,7 +169,7 @@
                               echo '<div class="col-md-12">
                             <a href="bookdetails.php?book_id='. $row['book_id'] .'" style="text-decoration: underline; font-weight: bold; font-size: 16pt">
                                 <ul>
-                                    <li><em>ddhthrt</em></li>
+                                    <li><em>'. $row['book_title'] .'</em></li>
                                 </ul>
                             </a>
                         </div>';

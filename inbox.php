@@ -202,9 +202,11 @@
                             }
                             $query = 'SELECT `id`, `g_name` FROM `account` WHERE type = "INSTRUCTOR" or type = "admin"';
                             $result = $con->query($query);
-                            if($result->fetch_assoc()){
+                            if($result->num_rows>0){
+
                                 while ($row=$result->fetch_assoc()) {
-                                    echo $row['g_name'];
+                                    echo $row['g_name'] . " kjhjhjk";
+
                                    if($uid!==$row['id']){
                                     echo '<option value="' . $row['id'] . '-'. $row['g_name'] .'">'. $row['g_name'] .'</option>';
                                    }

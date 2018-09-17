@@ -6,8 +6,8 @@ $terms = split("-", $search);
 //print_r($terms);
 
 $key = $terms[0];
-$by = $terms[1];
-$date = $terms[2];
+//$by = $terms[1];
+//$date = $terms[2];
 
 include_once 'connection.php';
 $dbconfig = new dbconfig();
@@ -29,7 +29,7 @@ $conn = $dbconfig->getCon();
       </head>
 <body>
     <?php
-          include('header.php');
+          include('header2.php');
       ?>
         <div class="searchh">
       <center>  <h3>Search Results</h3>
@@ -42,7 +42,7 @@ $conn = $dbconfig->getCon();
 
 
           <?php
-
+          /*
           $query ="";
           if($by=="title"){
               $dbconfig = new dbconfig();
@@ -79,6 +79,29 @@ $conn = $dbconfig->getCon();
 //$query = "SELECT `book_id`, `book_title` FROM `book` WHERE book_title like '%war%' and pub_date like '%2018%'";
 
         
+    */
+
+              $dbconfig = new dbconfig();
+              $conn = $dbconfig->getCon();
+              $query = "SELECT DISTINCT (book.book_id), book_title FROM book INNER JOIN junc_bookkeywords on book.book_id = junc_bookkeywords.book_id INNER JOIN keywords on junc_bookkeywords.keywords_id = keywords.id WHERE keywords.key_words like '%$key%' or book.book_title like '%$key%'";
+              $results = $conn->query($query);
+
+              $id = array();
+              if($results->num_rows>0){
+                while ($row2=$results->fetch_assoc()) {
+                   echo "<a href=\"bookdetails.php?book_id=" .$row2['book_id'] . "\"> <li>" . $row2['book_title'] . "</li></a>";
+                   $dbconfig = new dbconfig();
+                    $conn = $dbconfig->getCon();
+                    $query2 = "SELECT GROUP_CONCAT(keywords.key_words SEPARATOR '; ') as 'kw' FROM `junc_bookkeywords` INNER JOIN keywords on keywords.id = junc_bookkeywords.keywords_id WHERE junc_bookkeywords.book_id = " . $row2['book_id'];
+                    $results3 = $conn->query($query2);
+                    $row4 = $results3->fetch_assoc();
+                    echo 'Keywords: <i style="">' . $row4['kw'] . '</i>';
+                }
+           
+        }else{
+           echo "<center>No Results found!</center>";
+        }
+
 
           ?>
          

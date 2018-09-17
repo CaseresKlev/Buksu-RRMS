@@ -32,6 +32,7 @@ if(isset($_SESSION['uid'])){
 <title> Header </title>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="stylesheet" href= "css/header.css">
 <link rel="stylesheet" href= "css/search2.css">
 
@@ -69,7 +70,7 @@ if(isset($_SESSION['uid'])){
 								echo "<a href=". "\"logout.php\"" . ">LOGOUT</a>";
 					} ?>
 					</div>
-				</div>
+		</div>
 				<li style="float:right;" id="btnLoginOut" ><a href="new-login.php">Login</a></li>
 				<li style="float:right;" id="searchbtn">Search</li>
 			</ul>
