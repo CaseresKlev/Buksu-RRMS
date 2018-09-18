@@ -13,19 +13,21 @@
 	<div class="title">
 
 	</div>
-	<div class="content">
+	<div class="container">
 		<?php
 		include_once 'connection.php';
 		$dbconfig= new dbconfig();
 		$con= $dbconfig -> getCon();
-		$limit = 12;
+		$limit = 20;
+		$total = 0;
 
 		if(isset($_GET['filter'])){
 			$filter = $_GET['filter'];
 
 			if($filter==="student"){
-				$query= "SELECT book.book_id, book.book_title, book.cover, book.docloc FROM groupdoc INNER JOIN book on groupdoc.book_id = book.book_id INNER JOIN account ON account.id = groupdoc.accid WHERE book.enabled=1 and account.type = 'STUDENT' ORDER BY book.pub_date ASC";
+				$query= "SELECT book.book_id, book.book_title, book.cover, book.docloc FROM groupdoc INNER JOIN book on groupdoc.book_id = book.book_id INNER JOIN account ON account.id = groupdoc.accid WHERE book.enabled=1 and account.type = 'STUDENT' ORDER BY book.pub_date ASC limit 20";
 		$result = $con -> query($query);
+
 		if ($result->num_rows>0) {
 			while ($row=$result->fetch_assoc()) {
 				//echo $row['book_title'];
@@ -73,7 +75,7 @@
 	<?php }
 }
 }else{
-	$query= "SELECT book.book_id, book.book_title, book.cover, book.docloc FROM groupdoc INNER JOIN book on groupdoc.book_id = book.book_id INNER JOIN account ON account.id = groupdoc.accid WHERE book.enabled=1 and account.type = 'INSTRUCTOR' ORDER BY book.pub_date ASC";
+	$query= "SELECT book.book_id, book.book_title, book.cover, book.docloc FROM groupdoc INNER JOIN book on groupdoc.book_id = book.book_id INNER JOIN account ON account.id = groupdoc.accid WHERE book.enabled=1 and account.type = 'INSTRUCTOR' ORDER BY book.pub_date ASC limit 20";
 		$result = $con -> query($query);
 		if ($result->num_rows>0) {
 			while ($row=$result->fetch_assoc()) {
@@ -175,6 +177,7 @@
 	<?php }
 }}?>
 <br>
+
 </div>
 <br>
 <br>
@@ -184,6 +187,29 @@
 
 
 </div>
+<!--<div class="container">
+	<div class="row">
+		<nav aria-label="...">
+  <ul class="pagination">
+    <li class="page-item disabled">
+      <span class="page-link">Previous</span>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item active">
+      <span class="page-link">
+        2
+        <span class="sr-only">(current)</span>
+      </span>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav> -->
+	</div>
+</div>
+
 <br>
 <?php include_once 'footer.php'; ?>
 

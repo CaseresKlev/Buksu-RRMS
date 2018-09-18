@@ -77,7 +77,7 @@ if(isset($_SESSION['uid'])){
         </a>
         <div class="dropdown-menu " aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="index.php">All</a>
-        	<a class="dropdown-item" href="index.php?filter=instructor">Instructort Research</a>
+        	<a class="dropdown-item" href="index.php?filter=instructor">Instructor Research</a>
         	<a class="dropdown-item" href="index.php?filter=student">Student Research</a>
        	</div>
        
