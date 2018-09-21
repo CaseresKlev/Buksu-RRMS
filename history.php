@@ -57,10 +57,10 @@ if(!isset($_GET['book_id'])){
 
   </div>
         <!--  <div class="annegroupbook"> -->
-		<table class="subtable" style="width:100%; padding: 10px">
+		<table class="subtable" style="width:90%; margin-left: 40px;">
             <tr>
-                <td style="width:50%; text-align:left; font-family: helvetica"> <h2 style="color: darkblue"><i> <?php echo $title ?> </i></h2>
-					<h3 style="text-align:left; font-family: helvetica"> AUTHORS: </h3>
+                <td style="width:50%; text-align:left; font-family: helvetica;"> <h2 style="color: darkblue"><i> <?php echo $title ?> </i></h2>
+					<h4 style="text-align:left; font-family: helvetica"> <br>AUTHORS: </h4>
 				</td>
             </tr>
 			<tr>
@@ -103,6 +103,7 @@ if(!isset($_GET['book_id'])){
                             $conn = $dbconfig->getCon();
                             $query = "SELECT * FROM `bookhistory` WHERE book_id = $book_id ORDER by id DESC";
                             //`id`, `book_id`, `book_stat`, `date`
+                            //echo "$query";
                             $result = $conn->query($query);
 
                             if($result->num_rows>0){
@@ -163,7 +164,7 @@ if(!isset($_GET['book_id'])){
                                       }
                                     }
 
-                                }else if($row['book_stat']==="Disseminated / Presented"){
+                                }else if($row['book_stat']==="Disseminated"){
                                    //<!--- FOR DISSEMINATED / PRESENTED ---->
 
                                     $dbconfig = new dbconfig();
