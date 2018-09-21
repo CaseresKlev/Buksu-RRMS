@@ -278,7 +278,7 @@
             //$i=0;
             $len =  count($referencesArray);
             for($i=0; $i<$len-1; $i++ ){
-                $reftemp = split("\n", $referencesArray[$i]);
+                $reftemp = explode("\n", $referencesArray[$i]);
                 //print_r($temparr);
                 if($reftemp[0]===""){
                     echo "empty";
