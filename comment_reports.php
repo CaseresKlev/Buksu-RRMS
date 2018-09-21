@@ -225,7 +225,7 @@ if(isset($_GET['paper_trail'])){
 
                         <div class="row">
                             <table width="100%" id="tablefirst" class="table" style="border:1px solid black;">
-<<<<<<< HEAD
+
                               <tr style="border:1px solid black;">
                                   <th id="tabletwo"> Part of the Manuscript </th>
                                   <th id="tabletwo"> Comments and Suggestions </th>
@@ -314,7 +314,7 @@ if(isset($_GET['paper_trail'])){
                                     <td id="tabletextfield">  </th>
                                 </tr>
                                
-=======
+
                               
                                 <?php
                                 include_once 'connection.php';
@@ -341,7 +341,7 @@ if(isset($_GET['paper_trail'])){
 
                                   ?>
                                   
->>>>>>> 99c796209af527c678f681efa0921e41a316d63a
+
                             </table>
                         </div>
 
