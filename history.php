@@ -48,7 +48,7 @@ if(!isset($_GET['book_id'])){
 <body id="annegroupbody" >
   <div class="historydiv" style="background-color:white;">
    <?php
-        include_once 'header.php';
+        include_once 'header2.php';
      ?>
    <?php
 

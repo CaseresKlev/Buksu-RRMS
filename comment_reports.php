@@ -6,13 +6,13 @@ if(isset($_GET['paper_trail'])){
   $origin = "";
   $author = "";
   $book_title = "";
-
+//echo "$trail_id";
 
 
   include_once 'connection.php';
   $dbconfig = new dbconfig();
   $conn = $dbconfig->getCon();
-  $query = "SELECT comments.parts, comments.comments, comments.origin, comments.page, book.book_title, (SELECT concat('',(GROUP_CONCAT((select concat( author.a_lname, ',', SUBSTRING(author.a_fname, 1,1))) SEPARATOR '; '))) as authors FROM junc_authorbook INNER JOIN author on author.a_id = junc_authorbook.aut_id WHERE junc_authorbook.book_id = book.book_id) AS 'authors' from comments INNER JOIN paper_trail on paper_trail.id = comments.trail_id INNER JOIN book on book.book_id = paper_trail.book_id where paper_trail.id = 36";
+  $query = "SELECT comments.parts, comments.comments, comments.origin, comments.page, book.book_title, (SELECT concat('',(GROUP_CONCAT((select concat( author.a_lname, ',', SUBSTRING(author.a_fname, 1,1))) SEPARATOR '; '))) as authors FROM junc_authorbook INNER JOIN author on author.a_id = junc_authorbook.aut_id WHERE junc_authorbook.book_id = book.book_id) AS 'authors' from comments INNER JOIN paper_trail on paper_trail.id = comments.trail_id INNER JOIN book on book.book_id = paper_trail.book_id where paper_trail.id = $trail_id";
   $result = $conn->query($query);
   if($result->num_rows>0){
     while ($row=$result->fetch_assoc()) {
@@ -141,7 +141,9 @@ if(isset($_GET['paper_trail'])){
               @bottom-center {
                 content: element(footer);
               }
+              #sig{
 
+              }
 
             }
 
@@ -225,12 +227,16 @@ if(isset($_GET['paper_trail'])){
 
                         <div class="row">
                             <table width="100%" id="tablefirst" class="table" style="border:1px solid black;">
+<<<<<<< HEAD
 
+=======
+>>>>>>> e8dde3427026434c9d87df64779d1a6b81fc64ce
                               <tr style="border:1px solid black;">
                                   <th id="tabletwo"> Part of the Manuscript </th>
                                   <th id="tabletwo"> Comments and Suggestions </th>
                                   <th id="tabletwo"> Pages </th>
                               </tr>
+<<<<<<< HEAD
 
                               <tr style="border:1px solid black; height:50%;">
                                   <td id="tabletextfield">  </th>
@@ -315,12 +321,14 @@ if(isset($_GET['paper_trail'])){
                                 </tr>
                                
 
+=======
+>>>>>>> e8dde3427026434c9d87df64779d1a6b81fc64ce
                               
                                 <?php
                                 include_once 'connection.php';
                                   $dbconfig = new dbconfig();
                                   $conn = $dbconfig->getCon();
-                                  $query = "SELECT comments.parts, comments.comments, comments.origin, comments.page, book.book_title, (SELECT concat('',(GROUP_CONCAT((select concat( author.a_lname, ',', SUBSTRING(author.a_fname, 1,1))) SEPARATOR '; '))) as authors FROM junc_authorbook INNER JOIN author on author.a_id = junc_authorbook.aut_id WHERE junc_authorbook.book_id = book.book_id) AS 'authors' from comments INNER JOIN paper_trail on paper_trail.id = comments.trail_id INNER JOIN book on book.book_id = paper_trail.book_id where paper_trail.id = 36";
+                                  $query = "SELECT comments.parts, comments.comments, comments.origin, comments.page, book.book_title, (SELECT concat('',(GROUP_CONCAT((select concat( author.a_lname, ',', SUBSTRING(author.a_fname, 1,1))) SEPARATOR '; '))) as authors FROM junc_authorbook INNER JOIN author on author.a_id = junc_authorbook.aut_id WHERE junc_authorbook.book_id = book.book_id) AS 'authors' from comments INNER JOIN paper_trail on paper_trail.id = comments.trail_id INNER JOIN book on book.book_id = paper_trail.book_id where paper_trail.id = $trail_id";
                                   $result = $conn->query($query);
 
                                     if($result->num_rows>0){
@@ -340,8 +348,11 @@ if(isset($_GET['paper_trail'])){
                                   }
 
                                   ?>
+<<<<<<< HEAD
                                   
 
+=======
+>>>>>>> e8dde3427026434c9d87df64779d1a6b81fc64ce
                             </table>
                         </div>
 
@@ -349,7 +360,7 @@ if(isset($_GET['paper_trail'])){
                         <br>
 
 
-                                  <div class="row">
+                                  <div class="row" id="sig" style="">
                                       <div class="col-md-6">
                                           <h5> Summarized by: </h5>
                                           <br>

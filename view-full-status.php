@@ -589,6 +589,11 @@ session_start();
 
                     </tbody>
                 </table>
+                 <a href="comment_reports.php?paper_trail=<?php echo $trail_id  ?>" target="_blank">
+                <div class="btn btn-success">
+                  Print Comments
+                </div>
+             </a>
                 </div>
                 <br>
 

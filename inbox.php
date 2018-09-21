@@ -202,9 +202,11 @@
                             }
                             $query = 'SELECT `id`, `g_name` FROM `account` WHERE type = "INSTRUCTOR" or type = "admin"';
                             $result = $con->query($query);
-                            if($result->fetch_assoc()){
+                            if($result->num_rows>0){
+
                                 while ($row=$result->fetch_assoc()) {
-                                    echo $row['g_name'];
+                                   /// echo $row['g_name'] . " kjhjhjk";
+
                                    if($uid!==$row['id']){
                                     echo '<option value="' . $row['id'] . '-'. $row['g_name'] .'">'. $row['g_name'] .'</option>';
                                    }
@@ -239,7 +241,7 @@
                 $dbocnfig = new dbconfig();
                 $con = $dbocnfig->getCon();
                 $receiver_name = "";
-                $query = "SELECT account.id, account.g_name as 'sender', messages.sender, messages.receiver, messages.msg, messages.date, messages.seen FROM `messages` INNER JOIN account on account.id = messages.sender WHERE `sender` = 1 or `receiver` = 1 ORDER BY messages.date ASC LIMIT 20";
+                $query = "SELECT account.id, account.g_name as 'sender', messages.sender, messages.receiver, messages.msg, messages.date, messages.seen FROM `messages` INNER JOIN account on account.id = messages.sender WHERE `sender` = $uid or `receiver` = $uid ORDER BY messages.date ASC LIMIT 20";
                 $result = $con->query($query);
 
                 $inboxlist = array();

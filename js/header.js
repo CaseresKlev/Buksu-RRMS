@@ -48,26 +48,27 @@ window.onclick = function(event) {
 
 $("#btn-search-home").click(function(){
 	var skey = $("#skey").val();
-	var filterdate = $("#filterdate").val(); 
-	var by = "";
+	//alert("h");
+	//var filterdate = $("#filterdate").val(); 
+	//var by = "";
 
 
 
 	//alert("Please provide terms to search");
 
-		if($('#search_title').is(':checked')){
+	/*	if($('#search_title').is(':checked')){
 		//alert("searct");
 		by = "title";
 		
 		
 	}else if($('#search_kw').is(':checked')){
 		by = "kw";
-	}
+	} */
 
 
-	var search = "" + skey + "-" + by + "-" + filterdate;
+	//var search = "" + skey + "-" + by + "-" + filterdate;
 
-	window.location.replace("searchcontent.php?search="+search);
+	window.location.replace("searchcontent.php?search="+skey);
 
 	
 	

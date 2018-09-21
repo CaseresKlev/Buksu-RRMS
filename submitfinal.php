@@ -1,3 +1,25 @@
+<?php
+session_start();
+  
+  $book_title = "";
+  $book_id = "";
+  if(isset($_GET['book_id'])&&isset($_SESSION['uid'])){
+    $book_id = $_GET['book_id'];
+    //echo $book_id;
+    include_once 'connection.php';
+    $dbconfig = new dbconfig();
+    $conn = $dbconfig->getCon();
+    $query = "SELECT `book_title`, department.cat_name FROM `book` INNER JOIN department on department.id = book.book_id WHERE book.book_id = $book_id";
+    //echo $query;
+    $result = $conn->query($query);
+    if($result->num_rows>0){
+      $row = $result->fetch_assoc();
+      $book_title = $row['book_title'];
+    }
+  }
+
+?>
+
 
 
 <!DOCTYPE html>
@@ -26,7 +48,7 @@ if(isset($_SESSION['uid'])){
   }
 ?>
     <h1>Add Research Information</h1>
-
+<p id="b_id" style="display: none;"><?php echo $book_id?></p>
 <form  method="POST" enctype="multipart/form-data" id="entry" style="width: 100%; margin-left: auto; margin-right: auto;">
     <div id="enclosure" style="margin-bottom: 10px; margin-top: 20px; font-family: Raleway;
     min-width: 300px;
@@ -38,33 +60,11 @@ if(isset($_SESSION['uid'])){
             <div id="bookDet">
                 <p class="para">
                 Research Title
-                  <input style="text-transform: capitalize" type="text" placeholder="Research title" id="title" name="title">
+                  <input style="text-transform: capitalize" type="text" placeholder="Research title" id="title" name="title" value="<?php echo $book_title; ?>" readonly>
                 </p>
                 <p class="para">
                     Abstract:<br>
                     <textarea style="text-transform: capitalize"rows="6" cols="102" placeholder="Abstract" name="abstract" id="abstract"></textarea>
-                </p>
-                <p class="para">
-                    Submitted Date
-                    <input type="date" width="100%" name="pubdate" id="pubdate" placeholder="">
-                </p>
-                <p class="para">
-                    Category:
-                    <select name="department" id="department">
-                        <option></option>
-                    <?php include_once 'connection.php';
-                        $dbconfig = new dbconfig();
-                        $conn = $dbconfig->getCon();
-                        $query= "SELECT DISTINCT * FROM department;";
-                        $result= $conn->query($query);
-                         if ($result->num_rows > 0) {
-                             while ($row=$result->fetch_assoc()) { ?>
-                            <option><?php echo $row["cat_name"]; ?></option>
-                        <?php
-                             }
-                         }
-                         ?>
-                    </select>
                 </p>
                 <p id="para">
                     Key Words:<strong style="color:red">&emsp;One keyword per line</strong></note>
@@ -113,7 +113,7 @@ if(isset($_SESSION['uid'])){
                               <option>Utilized</option>";
                           }else {
                             echo
-                            "<option>Proposed</option>";
+                            "<option>Published</option>";
 
                           }
 
@@ -127,84 +127,13 @@ if(isset($_SESSION['uid'])){
         </div>
 
 
-        <fieldset class= "fieldset-published" style= "width: 100%; color:white; display:none; ">
-          <legend style="color:white;"><i> Fill Published Details</i></legend>
-          <form id="form-published">
-            ISSN:&emsp;
-            <input type="text/number" placeholder="serial number" id="isdn" name="serial" style= "width: 100%; font-family: Century Gothic; font-size: 15px; font-style: italic; font-weight: bold;"></br></br>
-
-            Name of Journal:
-            <input type="text" placeholder="journal name" id="journal" name="journal">
-  
-
-          Type of Journal:
-            <input type="text" placeholder="journal type" name="type" id="type"
-  style= "width: 100%; font-family: Century Gothic; font-size: 15px; font-style: italic; font-weight: bold;">
-
-
-</form>
-
-</fieldset>
+        
 
 
 
 
     <div id = "page2" style="display:none">
-        <fieldset>
-            <legend>Authors Info</legend>
-                <table name="aut_list" id="aut_list" style="display: none;">
-
-                    <th>First Name</th>
-                    <th>Middle Name</th>
-                    <th>Last Name</th>
-                    <th>Suffix</th>
-                    <th>Address</th>
-                    <th>Contact</th>
-                    <th>Email</th>
-                    <th></th>
-
-                    <tr id="row">
-
-                        <script>
-
-                          function lettersonly(input){
-                            var regex= /[^ a-z]/gi;
-                            input.value= input.value.replace(regex,"");
-                          }
-                          function numbersonly(input){
-                            var numall= /[^0-9]/gi;
-                            input.value= input.value.replace(numall, "");
-                          }
-                        </script>
-                        <td><input style="text-transform: capitalize" type="text" placeholder="First Name" oninput="this.className = ''" id="fname" name="fname[]" onkeyup="lettersonly(this)"></td>
-                        <td><input style="text-transform: capitalized" type="text" placeholder="Middle name" oninput="this.className = ''" id="mname" name="mname[]" onkeyup="lettersonly(this)"></td>
-                        <td><input style="text-transform: capitalized" type="text" placeholder="Last name" oninput="this.className = ''" id="lname" name="lname[]" onkeyup="lettersonly(this)"></td>
-                        <td style="width: 70px;">
-                            <select id="sufname" name="suf[]">
-                                <option></option>
-                                <option>JR</option>
-                                <option>IV</option>
-                                <option>III</option>
-                             </select>
-                        </td>
-                        <td><input style="text-transform: capitalized" type="text" placeholder="Address" oninput="this.className = ''" id="add" name="add[]"></td>
-                        <td><input type="text" placeholder="Contact" oninput="this.className = ''" id="con" name="contact[]" onkeyup="numbersonly(this)"></td>
-                        <td><input type="text" placeholder="Email" oninput="this.className = ''" id="email" name="email[]"></td>
-                    </tr>
-
-                </table>
-                <p>
-                    <table>
-                        <tr>
-                            <td>
-                                <button type="button" id="addField">Add Fields</button>
-                            </td>
-                        </tr>
-
-                    </table>
-
-                </p>
-    </fieldset><br/>
+        
     <fieldset>
       <legend>Terms of Use</legend>
       <style>
@@ -364,7 +293,7 @@ if(isset($_SESSION['uid'])){
 
 
 <script src="js/jquery-3.3.1.js"></script>
-<script src="js/add-research.js"></script>
+<script src="js/submitfinal.js"></script>
 
 <?php
     include 'footer.php';

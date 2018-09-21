@@ -730,7 +730,7 @@
                   }
 
                 ?>
-                <a href="comment_reports.php?paper_trail=1">
+                <a href="comment_reports.php?paper_trail=<?php echo $trail_id  ?>" target="_blank">
                 <div class="btn btn-success">
                   Print Comments
                 </div>
